@@ -202,10 +202,10 @@ namespace MW2KT
                         return;
                     Debug.WriteLine("We've got a successfully read partystate packet with packettype: " + partyPacket.PacketType.ToString("X2"));
                     // Check if multipart packet or not
-                    using (StreamWriter sw = new StreamWriter(@"H:/mw2_received_packettypes.txt", true))
+                    /*using (StreamWriter sw = new StreamWriter(@"H:/mw2_received_packettypes.txt", true))
                     {
                         sw.WriteLine(partyPacket.PacketType.ToString("X2"));
-                    }
+                    }*/
                     string vali = partyPacket.PacketType.ToString("X2").Substring(1, 1);
                     if (vali == "4") // we have all info
                     {

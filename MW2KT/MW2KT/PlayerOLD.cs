@@ -53,16 +53,6 @@ namespace MW2KT
             }
         }
 
-        /*public string Team
-        {
-            get { return _team; }
-            set 
-            { 
-                _team = value;
-                mView.SetTeam(_team);
-            }
-        }*/
-
         public UInt64 SteamID
         {
             get { return mSteamID; }

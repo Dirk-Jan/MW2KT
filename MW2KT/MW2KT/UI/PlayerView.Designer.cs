@@ -78,7 +78,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
             this.pictureBox2.Image = global::MW2KT.Properties.Resources.tag_cheater;
             this.pictureBox2.Location = new System.Drawing.Point(469, 4);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);

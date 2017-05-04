@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KT", "MW2KT\MW2KT.csproj", "{EB4333BE-7D77-49D0-BDCD-6519D221228F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KT_WPF", "MW2KT_WPF\MW2KT_WPF.csproj", "{8C65BFC0-A5DC-4554-BBC9-75DD14FEE991}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EB4333BE-7D77-49D0-BDCD-6519D221228F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB4333BE-7D77-49D0-BDCD-6519D221228F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB4333BE-7D77-49D0-BDCD-6519D221228F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C65BFC0-A5DC-4554-BBC9-75DD14FEE991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C65BFC0-A5DC-4554-BBC9-75DD14FEE991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C65BFC0-A5DC-4554-BBC9-75DD14FEE991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C65BFC0-A5DC-4554-BBC9-75DD14FEE991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
