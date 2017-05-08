@@ -56,8 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="PlayerView.cs" />
+    <Compile Include="UI\PlayerView.cs" />
     <Compile Include="UI\MW2Label.cs" />
+    <Compile Include="UI\PlayerViewLive.xaml.cs">
+      <DependentUpon>PlayerViewLive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl2.xaml.cs">
       <DependentUpon>UserControl2.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UI\PlayerViewLive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControl2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -103,6 +110,165 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1,2,3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4,5,6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7,8,9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10,11,12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\13,14,15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16,17,18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\19,20,21.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\22,23,24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\25,26,27.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\28,29,30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\31,32,33.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\34,35,36.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\37,38,39.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\40,41,42.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\43,44,45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\46,47,48,49.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\50,51,52,53.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\54,55,56,57.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\58,59,60,61.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\62,63,64,65.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\66,67,68,69.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\70.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\p10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\party_blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_bordeaux.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_brown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_pink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\party_yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MW2KTCore\MW2KTCore.csproj">
+      <Project>{1d1af281-69bc-4a02-b2d2-4aace5f4c090}</Project>
+      <Name>MW2KTCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

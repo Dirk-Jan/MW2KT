@@ -25,6 +25,7 @@ namespace MW2KT_WPF.UI
         public MW2Label()
         {
             Orientation = Orientation.Horizontal;
+            //Background = Brushes.Gray;
             DrawLabel();
         }
 
@@ -42,18 +43,24 @@ namespace MW2KT_WPF.UI
             if (iColorCodes.Count == 0)  // There is no color coding, so draw the complete string
             {
                 //e.Graphics.DrawString(this.Text, this.Font, Brushes.White, 0, 0);
-                TextBlock tb = new TextBlock();
-                tb.Foreground = Brushes.White;
-                tb.Text = this.Text;
+                TextBlock tb = new TextBlock()
+                {
+                    VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                    Foreground = Brushes.White,
+                    Text = this.Text
+                };
                 Children.Add(tb);
             }
             else if (iColorCodes[0] > 0) // There is text in front of the first color code
             {
                 string str = this.Text.Substring(0, iColorCodes[0]);
                 //e.Graphics.DrawString(str, this.Font, Brushes.White, 0, 0);
-                TextBlock tb = new TextBlock();
-                tb.Foreground = Brushes.White;
-                tb.Text = str;
+                TextBlock tb = new TextBlock()
+                {
+                    VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                    Foreground = Brushes.White,
+                    Text = str
+                };
                 Children.Add(tb);
                 drawnText += str;
             }
@@ -68,9 +75,12 @@ namespace MW2KT_WPF.UI
                 //float width = e.Graphics.MeasureString(drawnText, this.Font).Width - e.Graphics.MeasureString("r", this.Font).Width;    // For some reason when I don't calculate it this way, I get a wierd margin after the first drawn string. Haven't figured this out yet.
                 //float width = e.Graphics.MeasureString("e", this.Font).Width * drawnText.Length;
                 //e.Graphics.DrawString(str, this.Font, GetColor(Convert.ToInt16(this.Text.Substring(iColorCodes[i] + 1, 1))), width, 0);
-                TextBlock tb = new TextBlock();
-                tb.Foreground = GetColor(Convert.ToInt16(this.Text.Substring(iColorCodes[i] + 1, 1)));
-                tb.Text = str;
+                TextBlock tb = new TextBlock()
+                {
+                    VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                    Foreground = GetColor(Convert.ToInt16(this.Text.Substring(iColorCodes[i] + 1, 1))),
+                    Text = str
+                };
                 Children.Add(tb);
                 drawnText += str;
             }
@@ -108,8 +118,7 @@ namespace MW2KT_WPF.UI
             while (index != -1 && index + 1 <= this.Text.Length - 1)
             {
                 char c = this.Text[index + 1];
-                int i;
-                if (int.TryParse(this.Text[index + 1].ToString(), out i))
+                if (int.TryParse(this.Text[index + 1].ToString(), out int i))
                     colorCodes.Add(index);
                 index = this.Text.IndexOf('^', index + 1);  // Do + 1, otherwise it'll see the last seen carat again
             }

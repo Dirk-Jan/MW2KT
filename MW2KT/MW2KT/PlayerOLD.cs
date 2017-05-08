@@ -22,7 +22,8 @@ namespace MW2KT
         {
             mView = new PlayerView();
             mSteamID = steamID;
-            Name = name;
+            //Name = name;
+            Name = steamID.ToString();
             mPartyID = partyID;
             IPAddress = ip;
             mView.SetRank(playerPrestige, playerLevel + 1);

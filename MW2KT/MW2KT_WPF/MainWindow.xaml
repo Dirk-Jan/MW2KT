@@ -1,12 +1,15 @@
-﻿<Window x:Class="MW2KT_WPF.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MW2KT_WPF"
+        xmlns:UI="clr-namespace:MW2KT_WPF.UI" x:Class="MW2KT_WPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid Name="grdMain">
-        <TextBox Name="tboxInput" Height="23" Margin="80,10,80,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        Title="MainWindow" Height="350" Width="525" FontSize="24" Background="Black">
+    <Grid x:Name="grdMain">
+        <TextBox x:Name="tboxInput" Height="40" Margin="80,10,80,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <UI:PlayerViewLive x:Name="mw2PlayerView1" Margin="0,55,194,212" PlayerName="^0G^7host^1P^7h^1R^7ea^1K^0~"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="419,55,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
     </Grid>
 </Window>

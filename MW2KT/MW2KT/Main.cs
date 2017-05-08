@@ -21,7 +21,7 @@ namespace MW2KT
     public partial class Main : Form
     {
         private List<Point> mPlayerViewPoints = new List<Point>();
-        private List<PlayerOLD> mPlayers = new List<PlayerOLD>();
+        //private List<PlayerOLD> mPlayers = new List<PlayerOLD>();
         private string mLogPath, mLogfileSavePath = Directory.GetCurrentDirectory() + @"\logpath.txt";
         private byte mInterfaceIndex = 0;
 
@@ -257,8 +257,32 @@ namespace MW2KT
         }
         #endregion
 
+        List<PckPartystatePlayer> mOldPlayerList = new List<PckPartystatePlayer>();
+        private bool IsPlayerListTheSame(List<PckPartystatePlayer> players, List<PckPartystatePlayer> players2)
+        {
+            if (players.Count != players2.Count)
+                return false;
+            foreach (var player in players)
+                if (!IsPlayerInList(player.SteamID, players2))
+                    return false;
+            return true;
+        }
+        /*private bool IsPlayerInList(UInt64 steamID, List<PckPartystatePlayer> list)
+        {
+            foreach (var player in list)
+            {
+                if (player.SteamID == steamID)
+                    return true;
+            }
+            return false;
+        }*/
+
         private void RefreshPlayerList(List<PckPartystatePlayer> players)
         {
+            /*if (IsPlayerListTheSame(players, mOldPlayerList))
+                return;
+            mOldPlayerList = players;*/
+
             List<PlayerOLD> playerList = new List<PlayerOLD>();
             foreach (PckPartystatePlayer p in players)
             {
@@ -310,13 +334,13 @@ namespace MW2KT
             }
         }
 
-        private PlayerOLD GetPlayerBySteamID(UInt64 id)
+        /*private PlayerOLD GetPlayerBySteamID(UInt64 id)
         {
             foreach (PlayerOLD p in mPlayers)
                 if (p.SteamID == id)
                     return p;
             return null;
-        }
+        }*/
 
         private void toolStripComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
