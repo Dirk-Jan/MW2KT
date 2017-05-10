@@ -32,7 +32,7 @@ namespace MW2KT_WPF
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
-            grdMain.Children.Add(mLabel);
+            //grdMain.Children.Add(mLabel);
             tboxInput.TextChanged += TboxInput_TextChanged;
 
             //imgTest.Source = new BitmapImage(new Uri("http://cdn.edgecast.steamstatic.com/steamcommunity/public/images/avatars/48/48e0836bb433ebc476b3a06519f458e2cec45dfc_full.jpg"));

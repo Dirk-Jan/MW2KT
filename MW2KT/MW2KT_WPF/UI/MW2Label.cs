@@ -22,11 +22,28 @@ namespace MW2KT_WPF.UI
             }
         }
 
+        private double mFontSize = 24;
+        public double FontSize
+        {
+            get { return mFontSize; }
+            set
+            {
+                mFontSize = value;
+                DrawLabel();
+            }
+        }
+
         public MW2Label()
         {
             Orientation = Orientation.Horizontal;
             //Background = Brushes.Gray;
             DrawLabel();
+            this.SizeChanged += MW2Label_SizeChanged;
+        }
+
+        private void MW2Label_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
+        {
+            FontSize = this.ActualHeight * .75;
         }
 
         public void DrawLabel()
@@ -38,7 +55,7 @@ namespace MW2KT_WPF.UI
             List<int> iColorCodes = GetIndexesColorCodes();
 
             //string drawnText = string.Empty;
-            string drawnText = "r";
+            //string drawnText = "r";
             // Draw everything in front of the first color code
             if (iColorCodes.Count == 0)  // There is no color coding, so draw the complete string
             {
@@ -47,6 +64,7 @@ namespace MW2KT_WPF.UI
                 {
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
                     Foreground = Brushes.White,
+                    FontSize = this.FontSize,
                     Text = this.Text
                 };
                 Children.Add(tb);
@@ -59,10 +77,11 @@ namespace MW2KT_WPF.UI
                 {
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
                     Foreground = Brushes.White,
+                    FontSize = this.FontSize,
                     Text = str
                 };
                 Children.Add(tb);
-                drawnText += str;
+                //drawnText += str;
             }
 
 
@@ -79,10 +98,11 @@ namespace MW2KT_WPF.UI
                 {
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
                     Foreground = GetColor(Convert.ToInt16(this.Text.Substring(iColorCodes[i] + 1, 1))),
+                    FontSize = this.FontSize,
                     Text = str
                 };
                 Children.Add(tb);
-                drawnText += str;
+                //drawnText += str;
             }
 
             //return sp;
