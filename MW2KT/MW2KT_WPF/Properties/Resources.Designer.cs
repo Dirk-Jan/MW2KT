@@ -63,9 +63,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1 {
+        internal static System.Drawing.Bitmap l1_2_3 {
             get {
-                object obj = ResourceManager.GetObject("_1", resourceCulture);
+                object obj = ResourceManager.GetObject("l1_2_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1_2_3 {
+        internal static System.Drawing.Bitmap l10_11_12 {
             get {
-                object obj = ResourceManager.GetObject("_1_2_3", resourceCulture);
+                object obj = ResourceManager.GetObject("l10_11_12", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _10 {
+        internal static System.Drawing.Bitmap l13_14_15 {
             get {
-                object obj = ResourceManager.GetObject("_10", resourceCulture);
+                object obj = ResourceManager.GetObject("l13_14_15", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _10_11_12 {
+        internal static System.Drawing.Bitmap l16_17_18 {
             get {
-                object obj = ResourceManager.GetObject("_10_11_12", resourceCulture);
+                object obj = ResourceManager.GetObject("l16_17_18", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _13_14_15 {
+        internal static System.Drawing.Bitmap l19_20_21 {
             get {
-                object obj = ResourceManager.GetObject("_13_14_15", resourceCulture);
+                object obj = ResourceManager.GetObject("l19_20_21", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _16_17_18 {
+        internal static System.Drawing.Bitmap l22_23_24 {
             get {
-                object obj = ResourceManager.GetObject("_16_17_18", resourceCulture);
+                object obj = ResourceManager.GetObject("l22_23_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _19_20_21 {
+        internal static System.Drawing.Bitmap l25_26_27 {
             get {
-                object obj = ResourceManager.GetObject("_19_20_21", resourceCulture);
+                object obj = ResourceManager.GetObject("l25_26_27", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2 {
+        internal static System.Drawing.Bitmap l28_29_30 {
             get {
-                object obj = ResourceManager.GetObject("_2", resourceCulture);
+                object obj = ResourceManager.GetObject("l28_29_30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _22_23_24 {
+        internal static System.Drawing.Bitmap l31_32_33 {
             get {
-                object obj = ResourceManager.GetObject("_22_23_24", resourceCulture);
+                object obj = ResourceManager.GetObject("l31_32_33", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _25_26_27 {
+        internal static System.Drawing.Bitmap l34_35_36 {
             get {
-                object obj = ResourceManager.GetObject("_25_26_27", resourceCulture);
+                object obj = ResourceManager.GetObject("l34_35_36", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _28_29_30 {
+        internal static System.Drawing.Bitmap l37_38_39 {
             get {
-                object obj = ResourceManager.GetObject("_28_29_30", resourceCulture);
+                object obj = ResourceManager.GetObject("l37_38_39", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _3 {
+        internal static System.Drawing.Bitmap l4_5_6 {
             get {
-                object obj = ResourceManager.GetObject("_3", resourceCulture);
+                object obj = ResourceManager.GetObject("l4_5_6", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _31_32_33 {
+        internal static System.Drawing.Bitmap l40_41_42 {
             get {
-                object obj = ResourceManager.GetObject("_31_32_33", resourceCulture);
+                object obj = ResourceManager.GetObject("l40_41_42", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +193,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _34_35_36 {
+        internal static System.Drawing.Bitmap l43_44_45 {
             get {
-                object obj = ResourceManager.GetObject("_34_35_36", resourceCulture);
+                object obj = ResourceManager.GetObject("l43_44_45", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +203,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _37_38_39 {
+        internal static System.Drawing.Bitmap l46_47_48_49 {
             get {
-                object obj = ResourceManager.GetObject("_37_38_39", resourceCulture);
+                object obj = ResourceManager.GetObject("l46_47_48_49", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +213,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _4 {
+        internal static System.Drawing.Bitmap l50_51_52_53 {
             get {
-                object obj = ResourceManager.GetObject("_4", resourceCulture);
+                object obj = ResourceManager.GetObject("l50_51_52_53", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +223,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _4_5_6 {
+        internal static System.Drawing.Bitmap l54_55_56_57 {
             get {
-                object obj = ResourceManager.GetObject("_4_5_6", resourceCulture);
+                object obj = ResourceManager.GetObject("l54_55_56_57", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +233,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _40_41_42 {
+        internal static System.Drawing.Bitmap l58_59_60_61 {
             get {
-                object obj = ResourceManager.GetObject("_40_41_42", resourceCulture);
+                object obj = ResourceManager.GetObject("l58_59_60_61", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +243,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _43_44_45 {
+        internal static System.Drawing.Bitmap l62_63_64_65 {
             get {
-                object obj = ResourceManager.GetObject("_43_44_45", resourceCulture);
+                object obj = ResourceManager.GetObject("l62_63_64_65", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +253,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _46_47_48_49 {
+        internal static System.Drawing.Bitmap l66_67_68_69 {
             get {
-                object obj = ResourceManager.GetObject("_46_47_48_49", resourceCulture);
+                object obj = ResourceManager.GetObject("l66_67_68_69", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +263,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _5 {
+        internal static System.Drawing.Bitmap l7_8_9 {
             get {
-                object obj = ResourceManager.GetObject("_5", resourceCulture);
+                object obj = ResourceManager.GetObject("l7_8_9", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,109 +273,9 @@ namespace MW2KT_WPF.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _50_51_52_53 {
+        internal static System.Drawing.Bitmap l70 {
             get {
-                object obj = ResourceManager.GetObject("_50_51_52_53", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _54_55_56_57 {
-            get {
-                object obj = ResourceManager.GetObject("_54_55_56_57", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _58_59_60_61 {
-            get {
-                object obj = ResourceManager.GetObject("_58_59_60_61", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _6 {
-            get {
-                object obj = ResourceManager.GetObject("_6", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _62_63_64_65 {
-            get {
-                object obj = ResourceManager.GetObject("_62_63_64_65", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _66_67_68_69 {
-            get {
-                object obj = ResourceManager.GetObject("_66_67_68_69", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _7 {
-            get {
-                object obj = ResourceManager.GetObject("_7", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _7_8_9 {
-            get {
-                object obj = ResourceManager.GetObject("_7_8_9", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _70 {
-            get {
-                object obj = ResourceManager.GetObject("_70", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _8 {
-            get {
-                object obj = ResourceManager.GetObject("_8", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _9 {
-            get {
-                object obj = ResourceManager.GetObject("_9", resourceCulture);
+                object obj = ResourceManager.GetObject("l70", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

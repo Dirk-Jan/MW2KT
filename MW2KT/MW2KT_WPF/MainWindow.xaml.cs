@@ -27,7 +27,7 @@ namespace MW2KT_WPF
         {
             InitializeComponent();
 
-            mLabel = new UI.PlayerView("^1G^7hostPhRea^0K")
+            mLabel = new UI.PlayerView(/*"^1G^7hostPhRea^0K"*/"^4Ee^5n ^1S^0peler^3naam")
             {
                 VerticalAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Center
@@ -50,6 +50,26 @@ namespace MW2KT_WPF
             mw2PlayerView1.SteamID = 76561198092449962;
             //mw2PlayerView1.SteamID = 76561198128508608;
             mw2PlayerView1.PlayerName = mw2PlayerView1.PlayerName;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < 18; i++)
+            {
+                UI.PlayerViewLive p = new UI.PlayerViewLive();
+                p.PlayerName = "123456789012";
+                //p.SteamID = 76561198092449962;
+                if (i < 9)
+                {
+                    Grid.SetRow(p, i);
+                }
+                else
+                {
+                    Grid.SetColumn(p, 1);
+                    Grid.SetRow(p, i - 9);
+                }
+                grdPlayerViews.Children.Add(p);
+            }
         }
     }
 }

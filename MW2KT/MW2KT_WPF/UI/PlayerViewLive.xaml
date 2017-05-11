@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MW2KT_WPF.UI"
              mc:Ignorable="d" 
-             d:DesignHeight="52" d:DesignWidth="300">
+             d:DesignHeight="52" d:DesignWidth="338">
     <Grid>
 
         <Grid.OpacityMask>
@@ -21,14 +21,14 @@
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="40*"/>
-                    <ColumnDefinition Width="131*"/>
-                    <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="200*"/>
+                    <ColumnDefinition Width="30*"/>
                     <ColumnDefinition Width="20*"/>
                 </Grid.ColumnDefinitions>
                 <Image x:Name="imgParty" Grid.Column="1" Source="/MW2KT_WPF;component/Resources/party_blue.png"/>
                 <Image x:Name="imgCountryFlag" Grid.Column="1" Grid.Row="1"/>
-                <Image x:Name="imgAvatar" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="2" Margin="0,0,159,0"/>
-                <local:MW2Label x:Name="lblName" Grid.Column="3" Grid.RowSpan="2" Margin="32,0,0,0"/>
+                <Image x:Name="imgAvatar" Grid.Column="2" Grid.RowSpan="2"/>
+                <local:MW2Label x:Name="lblName" Grid.Column="3" Grid.RowSpan="2"/>
             </Grid>
 
         </Border>

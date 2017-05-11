@@ -65,6 +65,7 @@ namespace MW2KT_WPF.UI
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
                     Foreground = Brushes.White,
                     FontSize = this.FontSize,
+                    FontFamily = new FontFamily("Courier New"),
                     Text = this.Text
                 };
                 Children.Add(tb);
@@ -78,6 +79,7 @@ namespace MW2KT_WPF.UI
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
                     Foreground = Brushes.White,
                     FontSize = this.FontSize,
+                    FontFamily = new FontFamily("Courier New"),
                     Text = str
                 };
                 Children.Add(tb);
@@ -99,6 +101,7 @@ namespace MW2KT_WPF.UI
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
                     Foreground = GetColor(Convert.ToInt16(this.Text.Substring(iColorCodes[i] + 1, 1))),
                     FontSize = this.FontSize,
+                    FontFamily = new FontFamily("Courier New"),
                     Text = str
                 };
                 Children.Add(tb);
