@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:MW2KT_WPF"
         xmlns:UI="clr-namespace:MW2KT_WPF.UI" x:Class="MW2KT_WPF.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="600" FontSize="24" Background="Black">
+        Title="MainWindow" Height="750" Width="1000" FontSize="24" Background="Black">
     <Grid x:Name="grdMain">
-        <TextBox x:Name="tboxInput" Height="40" Margin="115,1,93,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="507,0,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Grid Margin="10,124,10,43" Background="Red" x:Name="grdPlayerViews">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -30,6 +28,5 @@
             </Grid.ColumnDefinitions>
         </Grid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="23,4,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <UI:PlayerViewLive HorizontalAlignment="Left" Height="35" Margin="23,59,0,0" VerticalAlignment="Top" Width="267" x:Name="mw2PlayerView1" PlayerName="123456789012"/>
     </Grid>
 </Window>

@@ -118,67 +118,67 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l1,2,3.png" />
+    <Resource Include="Resources\l1_2_3.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l4,5,6.png" />
+    <Resource Include="Resources\l4_5_6.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l7,8,9.png" />
+    <Resource Include="Resources\l7_8_9.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l10,11,12.png" />
+    <Resource Include="Resources\l10_11_12.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l13,14,15.png" />
+    <Resource Include="Resources\l13_14_15.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l16,17,18.png" />
+    <Resource Include="Resources\l16_17_18.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l19,20,21.png" />
+    <Resource Include="Resources\l19_20_21.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l22,23,24.png" />
+    <Resource Include="Resources\l22_23_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l25,26,27.png" />
+    <Resource Include="Resources\l25_26_27.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l28,29,30.png" />
+    <Resource Include="Resources\l28_29_30.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l31,32,33.png" />
+    <Resource Include="Resources\l31_32_33.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l34,35,36.png" />
+    <Resource Include="Resources\l34_35_36.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l37,38,39.png" />
+    <Resource Include="Resources\l37_38_39.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l40,41,42.png" />
+    <Resource Include="Resources\l40_41_42.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l43,44,45.png" />
+    <Resource Include="Resources\l43_44_45.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l46,47,48,49.png" />
+    <Resource Include="Resources\l46_47_48_49.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l50,51,52,53.png" />
+    <Resource Include="Resources\l50_51_52_53.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l54,55,56,57.png" />
+    <Resource Include="Resources\l54_55_56_57.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l58,59,60,61.png" />
+    <Resource Include="Resources\l58_59_60_61.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l62,63,64,65.png" />
+    <Resource Include="Resources\l62_63_64_65.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\l66,67,68,69.png" />
+    <Resource Include="Resources\l66_67_68_69.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\l70.png" />

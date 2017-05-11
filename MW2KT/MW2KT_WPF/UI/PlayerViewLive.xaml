@@ -28,6 +28,10 @@
                 <Image x:Name="imgParty" Grid.Column="1" Source="/MW2KT_WPF;component/Resources/party_blue.png"/>
                 <Image x:Name="imgCountryFlag" Grid.Column="1" Grid.Row="1"/>
                 <Image x:Name="imgAvatar" Grid.Column="2" Grid.RowSpan="2"/>
+
+                <Border Grid.Column="2" Grid.Row="1">
+                    <TextBlock Text="69" Foreground="White" TextAlignment="Right" VerticalAlignment="Bottom" x:Name="tbLevel"/>
+                </Border>
                 <local:MW2Label x:Name="lblName" Grid.Column="3" Grid.RowSpan="2"/>
             </Grid>
 

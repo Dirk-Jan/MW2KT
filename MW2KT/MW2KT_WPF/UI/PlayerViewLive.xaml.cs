@@ -48,7 +48,7 @@ namespace MW2KT_WPF.UI
         {
             InitializeComponent();
             imgAvatar.MouseLeftButtonDown += ImgAvatar_MouseLeftButtonDown;
-            SetRank(0, 66);
+            SetRank(0, 13);
         }
 
         private void ImgAvatar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -230,7 +230,7 @@ namespace MW2KT_WPF.UI
             {
                 lblLevel.Text = level.ToString();
             }*/
-
+            tbLevel.Text = level.ToString();
         }
         private void SetPrestige(BitmapImage img)
         {
