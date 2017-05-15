@@ -30,7 +30,7 @@
                 <Image x:Name="imgAvatar" Grid.Column="2" Grid.RowSpan="2"/>
 
                 <Border Grid.Column="2" Grid.Row="1">
-                    <TextBlock Text="69" Foreground="White" TextAlignment="Right" VerticalAlignment="Bottom" x:Name="tbLevel"/>
+                    <TextBlock Text="69" Foreground="White" TextAlignment="Right" VerticalAlignment="Bottom" x:Name="tbLevel" Height="22"/>
                 </Border>
                 <local:MW2Label x:Name="lblName" Grid.Column="3" Grid.RowSpan="2"/>
             </Grid>

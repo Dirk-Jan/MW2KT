@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KT_WPF", "MW2KT_WPF\MW2K
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KTCore", "MW2KTCore\MW2KTCore.csproj", "{1D1AF281-69BC-4A02-B2D2-4AACE5F4C090}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Pcap", "Test Pcap\Test Pcap.csproj", "{4E90B53E-B024-4893-85E4-E941766DCA4B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1D1AF281-69BC-4A02-B2D2-4AACE5F4C090}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D1AF281-69BC-4A02-B2D2-4AACE5F4C090}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D1AF281-69BC-4A02-B2D2-4AACE5F4C090}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E90B53E-B024-4893-85E4-E941766DCA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E90B53E-B024-4893-85E4-E941766DCA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E90B53E-B024-4893-85E4-E941766DCA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E90B53E-B024-4893-85E4-E941766DCA4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
