@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,20 +19,32 @@ namespace Test_Pcap
             for (int i = 0; i != allDevices.Count(); ++i)
                 DevicePrint(allDevices[i]);
 
+
+            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface nic in nics)
+            {
+                if (nic.NetworkInterfaceType != NetworkInterfaceType.Loopback
+                    && nic.NetworkInterfaceType != NetworkInterfaceType.Tunnel
+                    && nic.OperationalStatus == OperationalStatus.Up
+                    //&& nic.Name.StartsWith("vEthernet") == false
+                    //&& nic.Description.Contains("Hyper-v") == false
+                    && nic.Description.ToLower().Contains("vmware") == false)
+                {
+                    Console.WriteLine(nic.Name);
+                    Console.WriteLine(nic.Description);
+                    Console.WriteLine(nic.Id);
+                    //Do something
+                    //break;
+                }
+            }
+
+
             Console.ReadLine();
         }
 
         // Print all the available information on the given interface
         private static void DevicePrint(IPacketDevice device)
         {
-            bool containsIPV4Address = false;
-            foreach (DeviceAddress address in device.Addresses)
-                if (address.Address.Family == SocketAddressFamily.Internet)
-                    containsIPV4Address = true;
-            if (!containsIPV4Address)
-                return;
-
-
             // Name
             Console.WriteLine(device.Name);
 

@@ -219,29 +219,10 @@ namespace MW2KT_WPF.UI
 
         private void SetLevel(int level)
         {
-            /*if (lblLevel.InvokeRequired)
-            {
-                lblLevel.Invoke((MethodInvoker)delegate ()
-                {
-                    SetLevel(level);
-                });
-            }
-            else
-            {
-                lblLevel.Text = level.ToString();
-            }*/
             tbLevel.Text = level.ToString();
         }
         private void SetPrestige(BitmapImage img)
         {
-            /*if (pboxIcon.InvokeRequired)
-            {
-                pboxIcon.Invoke((MethodInvoker)delegate ()
-                {
-                    SetPrestige(img);
-                });
-            }
-            else pboxIcon.Image = img;*/
             imgAvatar.Source = img;
         }
     }

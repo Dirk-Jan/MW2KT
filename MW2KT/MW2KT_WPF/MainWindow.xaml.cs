@@ -55,5 +55,26 @@ namespace MW2KT_WPF
                 grdPlayerViews.Children.Add(p);
             }
         }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            lboxDevices.Items.Clear();
+            foreach (var item in PacketCapture.Devices)
+            {
+                lboxDevices.Items.Add(item.Description);
+            }
+            //lboxDevices.ItemsSource = PacketCapture.Devices;
+        }
+
+        private void lboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /*string s = e.AddedItems[0].ToString();
+            foreach (var item in PacketCapture.Devices)
+            {
+                if (item.Name == name)
+                    PacketCapture.DefaultDevice = item;
+            }
+            MessageBox.Show(s);*/
+        }
     }
 }
