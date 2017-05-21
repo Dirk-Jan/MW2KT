@@ -5,12 +5,25 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MW2KTCore
 {
     public static class PacketCapture
     {
-        private static string mRootPath = "";
+        private static PacketHandler mPacketHandler = null;
+        public static PacketHandler PacketHandler
+        {
+            get
+            {
+                if (mPacketHandler == null)
+                    mPacketHandler = new PacketHandler();
+                return mPacketHandler;
+            }
+            
+        }
+
+        private static string mRootPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         private static LivePacketDevice mDefaultDevice = null;
         public static LivePacketDevice DefaultDevice
         {
@@ -23,6 +36,7 @@ namespace MW2KTCore
             set
             {
                 mDefaultDevice = value;
+                Console.WriteLine("Currently selected device: " + mDefaultDevice.Description);
                 SaveDefaultDeviceToFile();
             }
         }
@@ -46,20 +60,21 @@ namespace MW2KTCore
 
         private static void SaveDefaultDeviceToFile()
         {
+            MessageBox.Show(mRootPath + @"/device");
             using (StreamWriter sw = new StreamWriter(mRootPath + @"/device", false))
             {
                 sw.WriteLine(DefaultDevice.Name);
             }
         }
 
-        private static void StartCapturing(HandlePacket packetHandler)
+        public static void StartCapturing(/*HandlePacket packetHandler*/)
         {
             using (PacketCommunicator communicator = DefaultDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
                 communicator.SetFilter("ip and udp and port 28960");
 
                 // Start the capture
-                communicator.ReceivePackets(0, packetHandler);
+                communicator.ReceivePackets(0, PacketHandler.HandlePacket);
             }
         }
     }

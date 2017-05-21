@@ -39,7 +39,7 @@ namespace MW2KT_WPF.UI
             set
             {
                 mSteamID = value;
-                imgAvatar.Source = Steam.GetPlayerAvatar(value);
+                //imgAvatar.Source = Steam.GetPlayerAvatar(value);
                 //imgCountryFlag.Source = Steam.GetCountryFlag(value);
             }
         }
@@ -48,7 +48,14 @@ namespace MW2KT_WPF.UI
         {
             InitializeComponent();
             imgAvatar.MouseLeftButtonDown += ImgAvatar_MouseLeftButtonDown;
-            SetRank(0, 13);
+            //SetRank(0, 13);
+        }
+
+        public void LoadPlayerInfoInView(MW2KTCore.Packets.PckPartystatePlayer player)
+        {
+            PlayerName = player.PlayerName;
+            SteamID = player.SteamID;
+            SetRank(player.PlayerPrestigeLevel, player.PlayerLevel);
         }
 
         private void ImgAvatar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -56,9 +63,15 @@ namespace MW2KT_WPF.UI
             System.Diagnostics.Process.Start("http://steamcommunity.com/profiles/" + mSteamID);
         }
 
-        public void SetRank(int prestige, int level)
+        public void SetPartyImage(string imageName)
         {
-            BitmapImage img = null;
+            BitmapImage img = new BitmapImage(new Uri("pack://application:,,,/Resources/" + imageName));
+            imgParty.Source = img;
+        }
+
+        private void SetRank(int prestige, int level)
+        {
+            level++;                                                // Increment level by 1 so the switch statement is correct
             string uri = "pack://application:,,,/Resources/";
             switch (prestige)
             {
@@ -179,6 +192,9 @@ namespace MW2KT_WPF.UI
                         case 70:
                             uri += "l70.png";
                             break;
+                        default:
+                            uri += "cross.png";
+                            break;
                     }
                     break;
                 case 1:
@@ -211,8 +227,11 @@ namespace MW2KT_WPF.UI
                 case 10:
                     uri += "p10.png";
                     break;
+                default:
+                    uri += "cross.png";
+                    break;
             }
-            img = new BitmapImage(new Uri(uri));
+            BitmapImage img = new BitmapImage(new Uri(uri));
             SetLevel(level);
             SetPrestige(img);
         }

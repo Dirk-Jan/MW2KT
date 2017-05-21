@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1000" FontSize="24" Background="Black" ContentRendered="Window_ContentRendered">
     <Grid x:Name="grdMain">
-        <Grid Margin="10,124,10,43" Background="Red" x:Name="grdPlayerViews">
+        <Grid Margin="10,124,10,200" Background="Red" x:Name="grdPlayerViews">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -29,5 +29,6 @@
         </Grid>
         <Button Content="Button" HorizontalAlignment="Left" Margin="23,4,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
         <ComboBox x:Name="lboxDevices" HorizontalAlignment="Left" Margin="215,10,0,0" VerticalAlignment="Top" Width="535" SelectionChanged="lboxDevices_SelectionChanged"/>
+        <Button x:Name="btnStartCapture" Content="Start capturing!" HorizontalAlignment="Left" Margin="755,12,0,0" VerticalAlignment="Top" Width="212" Click="Button_Click_2"/>
     </Grid>
 </Window>

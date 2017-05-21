@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="30*"/>
                     <ColumnDefinition Width="20*"/>
                 </Grid.ColumnDefinitions>
-                <Image x:Name="imgParty" Grid.Column="1" Source="/MW2KT_WPF;component/Resources/party_blue.png"/>
+                <Image x:Name="imgParty" Grid.Column="1"/>
                 <Image x:Name="imgCountryFlag" Grid.Column="1" Grid.Row="1"/>
                 <Image x:Name="imgAvatar" Grid.Column="2" Grid.RowSpan="2"/>
 

@@ -13,9 +13,10 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
     {
         public delegate void NewPlayerListAvailableEventHandler(List<PckPartystatePlayer> players);
         public event NewPlayerListAvailableEventHandler NewPlayerListAvailable;
-
+        private List<PckPartystatePlayer> mLastReturnedList = new List<PckPartystatePlayer>();
         protected virtual void OnNewPlayerListAvailable(List<PckPartystatePlayer> players)
         {
+            mLastReturnedList = players;
             if (NewPlayerListAvailable != null)
                 NewPlayerListAvailable(players);
         }
@@ -58,7 +59,8 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                     if (vali == "4") // we have all info
                     {
                         //RefreshPlayerList(partyPacket.Players);
-                        OnNewPlayerListAvailable(partyPacket.Players);
+                        if(!IsPlayerListTheSame(partyPacket.Players, mLastReturnedList))
+                            OnNewPlayerListAvailable(partyPacket.Players);
                     }
                     else if (vali == "8") // We have the first part of all info
                     {
@@ -75,11 +77,26 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                                     players.Add(p);
                             //RefreshPlayerList(players);
                             //mTempListPartyStatePlayers = null;
-                            OnNewPlayerListAvailable(players);
+                            if (!IsPlayerListTheSame(players, mLastReturnedList))
+                                OnNewPlayerListAvailable(players);
                         }
                     }
                 }
             }
+        }
+
+        private bool IsPlayerListTheSame(List<PckPartystatePlayer> list1, List<PckPartystatePlayer> list2)
+        {
+            if (list1.Count != list2.Count)
+                return false;
+            for (int i = 0; i < list1.Count; i++)
+            {
+                PckPartystatePlayer p1 = list1[i];
+                PckPartystatePlayer p2 = list2[i];
+                if (p1.SteamID != p2.SteamID) return false;
+
+            }
+            return true;
         }
 
         private bool IsPlayerInList(UInt64 steamId, List<PckPartystatePlayer> list)
@@ -89,5 +106,40 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                     return true;
             return false;
         }
+
+
+        #region Parties
+        // Kijk naar party id
+        // Staat hij nog niet in de list?
+        // Zo nee, hebben meerdere spelers hetzelfde party id?
+        // Zo ja, voeg party id toe aan list
+        public List<UInt64> GetParties(List<PckPartystatePlayer> list)
+        {
+            var parties = new List<UInt64>();
+
+            foreach(var p in list)
+            {
+                if (!IsUInt64InList(p.PartyID, parties) && MorePlayersInParty(p.SteamID, p.PartyID, list))
+                    parties.Add(p.PartyID);
+            }
+            return parties;
+        }
+
+        private bool IsUInt64InList(UInt64 value, List<UInt64> list)
+        {
+            foreach (var i in list)
+                if (i == value)
+                    return true;
+            return false;
+        }
+
+        private bool MorePlayersInParty(UInt64 ignoreSteamId, UInt64 partyId, List<PckPartystatePlayer> list)
+        {
+            foreach (var p in list)
+                if (p.SteamID != ignoreSteamId && p.PartyID == partyId)
+                    return true;
+            return false;
+        }
+        #endregion
     }
 }
