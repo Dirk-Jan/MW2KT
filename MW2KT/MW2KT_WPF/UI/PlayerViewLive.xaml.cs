@@ -56,6 +56,8 @@ namespace MW2KT_WPF.UI
             PlayerName = player.PlayerName;
             SteamID = player.SteamID;
             SetRank(player.PlayerPrestigeLevel, player.PlayerLevel);
+            if (player.IsHost)
+                Border1.Background = Brushes.Black;
         }
 
         private void ImgAvatar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

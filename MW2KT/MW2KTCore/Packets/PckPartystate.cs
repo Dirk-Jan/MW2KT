@@ -113,7 +113,7 @@ namespace MW2KTCore.Packets
                         shortend = true;
                     else
                         shortend = false;
-                    PckPartystatePlayer p = new PckPartystatePlayer(temp, true, shortend);
+                    PckPartystatePlayer p = new PckPartystatePlayer(temp, true, shortend, HostIP_ext);  // HostIP_ext is not set here, maybe the host is always in the first package
                     Players.Add(p);
 
                     // increment playerindex and mw2payloadoffset
@@ -154,7 +154,7 @@ namespace MW2KTCore.Packets
                         shortend = true;
                     else
                         shortend = false;
-                    PckPartystatePlayer p = new PckPartystatePlayer(temp, false, shortend);
+                    PckPartystatePlayer p = new PckPartystatePlayer(temp, false, shortend, HostIP_ext);
                     Players.Add(p);
 
                     // increment playerindex and mw2payloadoffset

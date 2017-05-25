@@ -27,10 +27,12 @@ namespace MW2KTCore.Packets
         public Byte PlayerPrestigeLevel { get; set; }   // 1 byte
         // Unknown byte[8] or byte[7]                   // 8/7 bytes followup
 
+        public bool IsHost { get; set; }
+
         public int mPlayerPayloadLength;
 
         // Constructor
-        public PckPartystatePlayer(byte[] buffer, bool followUpPackage, bool shortened)
+        public PckPartystatePlayer(byte[] buffer, bool followUpPackage, bool shortened, IPAddress hostIp)
         {
             PlayerID = buffer[0];
             PlayerName = ReadNullTerminatedString(buffer, 4);
@@ -61,6 +63,13 @@ namespace MW2KTCore.Packets
 
             // Set amount of bytes read / used
             mPlayerPayloadLength = (shortened ? 73 : 74) + PlayerName.Length + 1;
+
+            if (hostIp == null || !hostIp.Equals(ExternalIP))
+                IsHost = false;
+            else
+                IsHost = true;
+            //IsHost = hostIp.Equals(ExternalIP) ? true : false;  // To indicate if this player is the host
+              
         }
 
         private string ReadNullTerminatedString(byte[] buffer, int offset)
