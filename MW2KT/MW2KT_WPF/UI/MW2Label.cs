@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -11,7 +12,7 @@ namespace MW2KT_WPF.UI
 {
     public class MW2Label : StackPanel
     {
-        private string mText = "";
+        /*private string mText = "";
         public string Text
         {
             get { return mText; }
@@ -20,7 +21,29 @@ namespace MW2KT_WPF.UI
                 mText = value;
                 DrawLabel();
             }
+        }*/
+
+        public static readonly DependencyProperty TextProperty =
+            DependencyProperty.Register("Text",
+                typeof(string),
+                typeof(MW2Label),
+                new PropertyMetadata(string.Empty));
+
+        public string Text
+        {
+            get
+            {
+                return (string)GetValue(TextProperty);
+            }
+            set
+            {
+                SetValue(TextProperty, value);
+                DrawLabel();
+                //Text = value;
+            }
         }
+
+        
 
         private double mFontSize = 24;
         public double FontSize
@@ -35,6 +58,7 @@ namespace MW2KT_WPF.UI
 
         public MW2Label()
         {
+            this.DataContext = this;
             Orientation = Orientation.Horizontal;
             //Background = Brushes.Gray;
             DrawLabel();
@@ -43,7 +67,7 @@ namespace MW2KT_WPF.UI
 
         private void MW2Label_SizeChanged(object sender, System.Windows.SizeChangedEventArgs e)
         {
-            FontSize = this.ActualHeight * .75;
+            //FontSize = this.ActualHeight * .75;
         }
 
         public void DrawLabel()
@@ -51,7 +75,6 @@ namespace MW2KT_WPF.UI
             this.Children.Clear();
 
             // Draw the string
-            //e.Graphics.DrawString(this.Text, this.Font, System.Drawing.Brushes.Black, new System.Drawing.PointF(0, 0));
             List<int> iColorCodes = GetIndexesColorCodes();
 
             //string drawnText = string.Empty;
@@ -59,7 +82,6 @@ namespace MW2KT_WPF.UI
             // Draw everything in front of the first color code
             if (iColorCodes.Count == 0)  // There is no color coding, so draw the complete string
             {
-                //e.Graphics.DrawString(this.Text, this.Font, Brushes.White, 0, 0);
                 TextBlock tb = new TextBlock()
                 {
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -73,7 +95,6 @@ namespace MW2KT_WPF.UI
             else if (iColorCodes[0] > 0) // There is text in front of the first color code
             {
                 string str = this.Text.Substring(0, iColorCodes[0]);
-                //e.Graphics.DrawString(str, this.Font, Brushes.White, 0, 0);
                 TextBlock tb = new TextBlock()
                 {
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -83,7 +104,6 @@ namespace MW2KT_WPF.UI
                     Text = str
                 };
                 Children.Add(tb);
-                //drawnText += str;
             }
 
 
@@ -93,9 +113,6 @@ namespace MW2KT_WPF.UI
                 int startIndex = iColorCodes[i] + 2;   // + 2 To skip the color coding ^1, ^2, ^3, ect
                 int strLength = i != (iColorCodes.Count - 1) ? iColorCodes[i + 1] - startIndex : Text.Length - startIndex;
                 string str = this.Text.Substring(startIndex, strLength);
-                //float width = e.Graphics.MeasureString(drawnText, this.Font).Width - e.Graphics.MeasureString("r", this.Font).Width;    // For some reason when I don't calculate it this way, I get a wierd margin after the first drawn string. Haven't figured this out yet.
-                //float width = e.Graphics.MeasureString("e", this.Font).Width * drawnText.Length;
-                //e.Graphics.DrawString(str, this.Font, GetColor(Convert.ToInt16(this.Text.Substring(iColorCodes[i] + 1, 1))), width, 0);
                 TextBlock tb = new TextBlock()
                 {
                     VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -105,10 +122,7 @@ namespace MW2KT_WPF.UI
                     Text = str
                 };
                 Children.Add(tb);
-                //drawnText += str;
             }
-
-            //return sp;
         }
 
         private Brush GetColor(int colorCode)

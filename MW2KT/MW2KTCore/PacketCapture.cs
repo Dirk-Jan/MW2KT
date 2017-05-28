@@ -60,7 +60,7 @@ namespace MW2KTCore
 
         private static void SaveDefaultDeviceToFile()
         {
-            MessageBox.Show(mRootPath + @"/device");
+            //MessageBox.Show(mRootPath + @"/device");
             using (StreamWriter sw = new StreamWriter(mRootPath + @"/device", false))
             {
                 sw.WriteLine(DefaultDevice.Name);

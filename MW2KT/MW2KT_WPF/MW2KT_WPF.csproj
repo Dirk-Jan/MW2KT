@@ -57,10 +57,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ChooseGUIWindow.xaml.cs">
+      <DependentUpon>ChooseGUIWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TableGUIWindow.xaml.cs">
+      <DependentUpon>TableGUIWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\MW2Label.cs" />
-    <Compile Include="UI\PlayerViewLive.xaml.cs">
+    <Compile Include="UI\ScoreboardGUI\PlayerViewLive.xaml.cs">
       <DependentUpon>PlayerViewLive.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\TableGUI\PlayerGridRow.cs" />
+    <Page Include="ChooseGUIWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -73,7 +84,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UI\PlayerViewLive.xaml">
+    <Page Include="TableGUIWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\ScoreboardGUI\PlayerViewLive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,6 +123,10 @@
     <ProjectReference Include="..\MW2KTCore\MW2KTCore.csproj">
       <Project>{1d1af281-69bc-4a02-b2d2-4aace5f4c090}</Project>
       <Name>MW2KTCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MW2KT\MW2KT.csproj">
+      <Project>{EB4333BE-7D77-49D0-BDCD-6519D221228F}</Project>
+      <Name>MW2KT</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -236,5 +255,6 @@
   <ItemGroup>
     <Resource Include="Resources\cross.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

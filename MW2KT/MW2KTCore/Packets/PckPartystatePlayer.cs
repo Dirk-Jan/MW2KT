@@ -58,7 +58,7 @@ namespace MW2KTCore.Packets
                 else
                     playerLevelOffset = playerNameOffset + 56 + 4;
             }
-            PlayerLevel = buffer[playerLevelOffset];
+            PlayerLevel = (byte)((int)buffer[playerLevelOffset] + 1);
             PlayerPrestigeLevel = buffer[playerLevelOffset + 1];
 
             // Set amount of bytes read / used

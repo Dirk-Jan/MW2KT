@@ -1,0 +1,47 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MW2KT_WPF"
+        xmlns:UI="clr-namespace:MW2KT_WPF.UI" x:Class="MW2KT_WPF.TableGUIWindow"
+        mc:Ignorable="d"
+        Title="TableGUIWindow" Height="500" Width="800" ContentRendered="Window_ContentRendered">
+    <Grid>
+        <DataGrid x:Name="dgGrid" Margin="10,37,10,10" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" AlternationCount="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Party" />
+                <DataGridTemplateColumn Header="Player Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <UI:MW2Label Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Name}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTextColumn Header="Player Name" Binding="{Binding Name}"/>-->
+                <DataGridTextColumn Header="Rank" Binding="{Binding FirstName}" />
+                <DataGridTemplateColumn Header="Rank">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DockPanel>
+                                <Image DockPanel.Dock="Left" Height="32" Width="32" Source="{Binding PrestigeURL}"/>
+                                <TextBlock DockPanel.Dock="Right" Text="{Binding Level}"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="IP Address" Binding="{Binding IPAddress}" />
+                <DataGridTextColumn Header="Location" />
+                <DataGridTextColumn Header="Tag" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="lboxDevices" Margin="10,10,247,0" VerticalAlignment="Top" SelectionChanged="lboxDevices_SelectionChanged"/>
+        <Button x:Name="btnStartCapture" Content="Start capturing!" Margin="550,10,10,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+
+
+
+    </Grid>
+</Window>

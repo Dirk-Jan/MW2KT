@@ -41,7 +41,7 @@ namespace MW2KT_WPF
         {
             for (int i = 0; i < 18; i++)
             {
-                UI.PlayerViewLive p = new UI.PlayerViewLive();
+                UI.ScoreboardGUI.PlayerViewLive p = new UI.ScoreboardGUI.PlayerViewLive();
                 p.PlayerName = "123456789012";
                 //p.SteamID = 76561198092449962;
                 if (i < 9)
@@ -109,7 +109,7 @@ namespace MW2KT_WPF
             var partyImages = GetRandomizedPartyImages();
             for (int i = 0; i < players.Count; i++)
             {
-                var p = new UI.PlayerViewLive();                                    // Create new PlayerView
+                var p = new UI.ScoreboardGUI.PlayerViewLive();                                    // Create new PlayerView
                 p.LoadPlayerInfoInView(players[i]);                 // Load generic info in view
                 for (int j = 0; j < parties.Count; j++)             // Set the party icon if in party
                 {

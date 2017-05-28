@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MW2KT_WPF.UI
+namespace MW2KT_WPF.UI.ScoreboardGUI
 {
     /// <summary>
     /// Interaction logic for PlayerViewLive.xaml
