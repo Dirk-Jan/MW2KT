@@ -13,22 +13,19 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
     {
         public delegate void NewPlayerListAvailableEventHandler(List<PckPartystatePlayer> players);
         public event NewPlayerListAvailableEventHandler NewPlayerListAvailable;
-        private List<PckPartystatePlayer> mLastReturnedList = new List<PckPartystatePlayer>();
+        
         protected virtual void OnNewPlayerListAvailable(List<PckPartystatePlayer> players)
         {
-            mLastReturnedList = players;
+            mLastReturnedPlayerList = players;
             if (NewPlayerListAvailable != null)
                 NewPlayerListAvailable(players);
         }
 
-        private List<PckPartystatePlayer> mTempListPartyStatePlayers = null;
-
-        //public delegate void NewPlayerListAvailable(List<PckPartystatePlayer> players);
+        private List<PckPartystatePlayer> mLastReturnedPlayerList = new List<PckPartystatePlayer>();
+        private List<PckPartystatePlayer> mTempPlayerList = null;
 
         public void HandlePacket(Packet packet)
         {
-            //IpV4Datagram ip = packet.Ethernet.IpV4;
-            //UdpDatagram udp = ip.Udp;
             // First 14 pcap Header, next 20 IPV4 Header, next 8 UDP Header
             // Get the MW2 Payload
             byte[] mw2Payload = new byte[packet.Length - 42];
@@ -47,7 +44,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                     // We have a 0partystate packet
                     PckPartystate partyPacket = new PckPartystate(mw2Payload);
                     // Check if packet was successfully read
-                    if (!partyPacket.mSuccess)
+                    if (!partyPacket.Success)
                         return;
                     Debug.WriteLine("We've got a successfully read partystate packet with packettype: " + partyPacket.PacketType.ToString("X2"));
                     // Check if multipart packet or not
@@ -59,25 +56,25 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                     if (vali == "4") // we have all info
                     {
                         //RefreshPlayerList(partyPacket.Players);
-                        if(!IsPlayerListTheSame(partyPacket.Players, mLastReturnedList))
+                        if(!IsPlayerListTheSame(partyPacket.Players, mLastReturnedPlayerList))
                             OnNewPlayerListAvailable(partyPacket.Players);
                     }
                     else if (vali == "8") // We have the first part of all info
                     {
-                        mTempListPartyStatePlayers = partyPacket.Players;
+                        mTempPlayerList = partyPacket.Players;
                     }
                     else if (vali == "9") // We have the second part off all info
                     {
                         // We can also get the followup packet without getting a NEW first half packet first. The we use the old first half of the packet
-                        if (mTempListPartyStatePlayers != null) // Can only happen the first time
+                        if (mTempPlayerList != null) // Can only happen the first time
                         {
-                            List<PckPartystatePlayer> players = mTempListPartyStatePlayers;  // Add the players from the first half of the packet
+                            List<PckPartystatePlayer> players = mTempPlayerList;  // Add the players from the first half of the packet
                             foreach (PckPartystatePlayer p in partyPacket.Players)
                                 if (!IsPlayerInList(p.SteamID, players))  // The last player in the first half of the packet and the first player in the second half of the packet are the same. So we filter the duplicate out.
                                     players.Add(p);
                             //RefreshPlayerList(players);
                             //mTempListPartyStatePlayers = null;
-                            if (!IsPlayerListTheSame(players, mLastReturnedList))
+                            if (!IsPlayerListTheSame(players, mLastReturnedPlayerList))
                                 OnNewPlayerListAvailable(players);
                         }
                     }

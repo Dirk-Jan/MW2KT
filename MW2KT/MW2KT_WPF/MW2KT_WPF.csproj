@@ -120,16 +120,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MW2KTCore\MW2KTCore.csproj">
-      <Project>{1d1af281-69bc-4a02-b2d2-4aace5f4c090}</Project>
-      <Name>MW2KTCore</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MW2KT\MW2KT.csproj">
-      <Project>{EB4333BE-7D77-49D0-BDCD-6519D221228F}</Project>
-      <Name>MW2KT</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\l1_2_3.png" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +245,11 @@
   <ItemGroup>
     <Resource Include="Resources\cross.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\MW2KTCore\MW2KTCore.csproj">
+      <Project>{1d1af281-69bc-4a02-b2d2-4aace5f4c090}</Project>
+      <Name>MW2KTCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

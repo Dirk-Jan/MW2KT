@@ -74,7 +74,7 @@ namespace MW2KT_WPF
             {
                 Console.WriteLine(description + " : " + item.Description);
                 if (item.Description == description)
-                    PacketCapture.DefaultDevice = item;
+                    PacketCapture.SelectedDevice = item;
             }
             //MessageBox.Show(name);
             //System.Windows.Forms.MessageBox.Show(e.AddedItems.Count.ToString());

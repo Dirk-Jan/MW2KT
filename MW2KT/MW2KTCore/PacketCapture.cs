@@ -24,20 +24,20 @@ namespace MW2KTCore
         }
 
         private static string mRootPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-        private static LivePacketDevice mDefaultDevice = null;
-        public static LivePacketDevice DefaultDevice
+        private static LivePacketDevice mSelectedDevice = null;
+        public static LivePacketDevice SelectedDevice
         {
             get
             {
-                if (mDefaultDevice == null)         // Check if default deivce was loaded from file
-                    LoadDefaultDeviceFromFile();    // Load default device from file.
-                return mDefaultDevice;
+                if (mSelectedDevice == null)         // Check if default deivce was loaded from file
+                    LoadSelectedDeviceFromFile();    // Load default device from file.
+                return mSelectedDevice;
             }
             set
             {
-                mDefaultDevice = value;
-                Console.WriteLine("Currently selected device: " + mDefaultDevice.Description);
-                SaveDefaultDeviceToFile();
+                mSelectedDevice = value;
+                Console.WriteLine("Currently selected device: " + mSelectedDevice.Description);
+                SaveSelectedDeviceToFile();
             }
         }
         public static IList<LivePacketDevice> Devices
@@ -45,7 +45,7 @@ namespace MW2KTCore
             get { return LivePacketDevice.AllLocalMachine; }
         }
 
-        private static void LoadDefaultDeviceFromFile()
+        private static void LoadSelectedDeviceFromFile()
         {
             using (StreamReader sr = new StreamReader(mRootPath + @"/device"))
             {
@@ -53,23 +53,23 @@ namespace MW2KTCore
                 foreach (var item in Devices)
                 {
                     if (item.Name == name)
-                        mDefaultDevice = item;
+                        mSelectedDevice = item;
                 }
             }
         }
 
-        private static void SaveDefaultDeviceToFile()
+        private static void SaveSelectedDeviceToFile()
         {
             //MessageBox.Show(mRootPath + @"/device");
             using (StreamWriter sw = new StreamWriter(mRootPath + @"/device", false))
             {
-                sw.WriteLine(DefaultDevice.Name);
+                sw.WriteLine(SelectedDevice.Name);
             }
         }
 
         public static void StartCapturing(/*HandlePacket packetHandler*/)
         {
-            using (PacketCommunicator communicator = DefaultDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
+            using (PacketCommunicator communicator = SelectedDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
                 communicator.SetFilter("ip and udp and port 28960");
 

@@ -33,19 +33,19 @@ namespace MW2KT_WPF
             lboxDevices.Items.Clear();
             foreach (var item in PacketCapture.Devices)
             {
-                lboxDevices.Items.Add(item.Description);
+                lboxDevices.Items.Add(item.Name);
             }
             //lboxDevices.ItemsSource = PacketCapture.Devices;
         }
 
-        private void lboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void lboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)       // Problem: if two devices have the same description, how do you select the second one
         {
             string description = e.AddedItems[0].ToString();
             foreach (var item in PacketCapture.Devices)
             {
-                Console.WriteLine(description + " : " + item.Description);
-                if (item.Description == description)
-                    PacketCapture.DefaultDevice = item;
+                Console.WriteLine(description + " : " + item.Name);
+                if (item.Name == description)
+                    PacketCapture.SelectedDevice = item;
             }
             //MessageBox.Show(name);
             //System.Windows.Forms.MessageBox.Show(e.AddedItems.Count.ToString());

@@ -80,20 +80,27 @@ namespace MW2KTCore.Packets
         // if byte before playercount == 0x19 || 0x29 || 0x39 || 0x69 --> header ends player starts
         //OLD
 
-        private int mMW2PayloadOffset, playerIndex = 0;
-        public bool mSuccess = true;
+        //private int mMW2PayloadOffset, playerIndex = 0;
+        private bool mSucces = true;
+        public bool Success
+        {
+            get { return mSucces; }
+            set { mSucces = value; }
+        }
         public List<PckPartystatePlayer> Players { get; set; }
 
         // Constructor
         public PckPartystate(byte[] buffer) // The buffer needs to be from the beginning off FF FF FF FF partystate, so the udp payload
         {
+            int mMW2PayloadOffset, playerIndex = 0;
+
             PacketID = new Byte[4];
             Buffer.BlockCopy(buffer, 16, PacketID, 0, PacketID.Length);
             PacketType = buffer[20];
             PlayerCount = buffer[21];
             if (PacketType == 0x39) // Only 2 bytes follow, useless packet
             {
-                mSuccess = false;
+                Success = false;
                 return;
             }
             Players = new List<PckPartystatePlayer>();
@@ -118,7 +125,7 @@ namespace MW2KTCore.Packets
 
                     // increment playerindex and mw2payloadoffset
                     playerIndex++;
-                    mMW2PayloadOffset += p.mPlayerPayloadLength;
+                    mMW2PayloadOffset += p.PlayerPayloadLength;
                 }
             }
             else
@@ -137,7 +144,7 @@ namespace MW2KTCore.Packets
 
                 if (ValidationByte.ToString("X2").Substring(1, 1) != "4" && ValidationByte.ToString("X2").Substring(1, 1) != "C") // players will follow, but like 00 01 02 03 04 player [Haven't figured this out yet]
                 {
-                    mSuccess = false;
+                    Success = false;
                     return;
                 }
 
@@ -159,7 +166,7 @@ namespace MW2KTCore.Packets
 
                     // increment playerindex and mw2payloadoffset
                     playerIndex++;
-                    mMW2PayloadOffset += p.mPlayerPayloadLength;
+                    mMW2PayloadOffset += p.PlayerPayloadLength;
                 }
             }
         }
