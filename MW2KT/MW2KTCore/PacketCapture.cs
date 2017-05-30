@@ -40,9 +40,31 @@ namespace MW2KTCore
                 SaveSelectedDeviceToFile();
             }
         }
-        public static IList<LivePacketDevice> Devices
+
+        public static int SelectedDeivceIndex
+        {
+            get
+            {
+                for (int i = 0; i < AvailableDevices.Count; i++)
+                    if (AvailableDevices[i].Name == SelectedDevice.Name)
+                        return i;
+                return -1;
+            }
+        }
+        public static IList<LivePacketDevice> AvailableDevices
         {
             get { return LivePacketDevice.AllLocalMachine; }
+        }
+
+        public static List<LivePacketDeviceExtended> AvailableDevicesExtended
+        {
+            get
+            {
+                var list = new List<LivePacketDeviceExtended>();
+                foreach (var item in LivePacketDevice.AllLocalMachine)
+                    list.Add(new LivePacketDeviceExtended(item));
+                return list;
+            }
         }
 
         private static void LoadSelectedDeviceFromFile()
@@ -50,10 +72,14 @@ namespace MW2KTCore
             using (StreamReader sr = new StreamReader(mRootPath + @"/device"))
             {
                 string name = sr.ReadLine();
-                foreach (var item in Devices)
+                foreach (var item in AvailableDevices)
                 {
                     if (item.Name == name)
                         mSelectedDevice = item;
+                }
+                if(mSelectedDevice == null)
+                {
+                    MessageBox.Show("Could not locate your default capture device on this computer.", "MW2KT", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -67,7 +93,7 @@ namespace MW2KTCore
             }
         }
 
-        public static void StartCapturing(/*HandlePacket packetHandler*/)
+        public static void StartCapturing()
         {
             using (PacketCommunicator communicator = SelectedDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {

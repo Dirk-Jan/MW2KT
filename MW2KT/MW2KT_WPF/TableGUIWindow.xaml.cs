@@ -30,26 +30,15 @@ namespace MW2KT_WPF
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            lboxDevices.Items.Clear();
-            foreach (var item in PacketCapture.Devices)
-            {
-                lboxDevices.Items.Add(item.Name);
-            }
-            //lboxDevices.ItemsSource = PacketCapture.Devices;
+            cboxDevices.ItemsSource = PacketCapture.AvailableDevicesExtended;
+            //lboxDevices.SelectedValue = new LivePacketDeviceExtended(PacketCapture.SelectedDevice);
+            cboxDevices.SelectedIndex = PacketCapture.SelectedDeivceIndex;
+            cboxDevices.SelectionChanged += CboxDevices_SelectionChanged;
         }
 
-        private void lboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)       // Problem: if two devices have the same description, how do you select the second one
+        private void CboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string description = e.AddedItems[0].ToString();
-            foreach (var item in PacketCapture.Devices)
-            {
-                Console.WriteLine(description + " : " + item.Name);
-                if (item.Name == description)
-                    PacketCapture.SelectedDevice = item;
-            }
-            //MessageBox.Show(name);
-            //System.Windows.Forms.MessageBox.Show(e.AddedItems.Count.ToString());
-            //e.AddedItems[0]
+            PacketCapture.SelectedDevice = ((LivePacketDeviceExtended)e.AddedItems[0]).LivePacketDevice;
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -57,7 +46,6 @@ namespace MW2KT_WPF
             PacketCapture.PacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
             new Thread(new ThreadStart(PacketCapture.StartCapturing)).Start();
 
-            //PacketCapture.StartCapturing();
             btnStartCapture.Content = "---";
         }
 

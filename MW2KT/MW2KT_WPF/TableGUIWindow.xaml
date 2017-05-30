@@ -15,14 +15,12 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
-                                <UI:MW2Label Text="{Binding Name}"/>
+                                <!--<UI:MW2Label Text="{Binding Name}"/>-->
                                 <TextBlock Text="{Binding Name}"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--<DataGridTextColumn Header="Player Name" Binding="{Binding Name}"/>-->
-                <DataGridTextColumn Header="Rank" Binding="{Binding FirstName}" />
                 <DataGridTemplateColumn Header="Rank">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -38,7 +36,7 @@
                 <DataGridTextColumn Header="Tag" />
             </DataGrid.Columns>
         </DataGrid>
-        <ComboBox x:Name="lboxDevices" Margin="10,10,247,0" VerticalAlignment="Top" SelectionChanged="lboxDevices_SelectionChanged"/>
+        <ComboBox x:Name="cboxDevices" Margin="10,10,247,0" VerticalAlignment="Top"/>
         <Button x:Name="btnStartCapture" Content="Start capturing!" Margin="550,10,10,0" VerticalAlignment="Top" Click="Button_Click_2"/>
 
 

@@ -60,7 +60,7 @@ namespace MW2KT_WPF
         private void Window_ContentRendered(object sender, EventArgs e)
         {
             lboxDevices.Items.Clear();
-            foreach (var item in PacketCapture.Devices)
+            foreach (var item in PacketCapture.AvailableDevices)
             {
                 lboxDevices.Items.Add(item.Description);
             }
@@ -70,7 +70,7 @@ namespace MW2KT_WPF
         private void lboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             string description = e.AddedItems[0].ToString();
-            foreach (var item in PacketCapture.Devices)
+            foreach (var item in PacketCapture.AvailableDevices)
             {
                 Console.WriteLine(description + " : " + item.Description);
                 if (item.Description == description)
