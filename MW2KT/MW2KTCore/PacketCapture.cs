@@ -36,8 +36,8 @@ namespace MW2KTCore
             set
             {
                 mSelectedDevice = value;
-                Console.WriteLine("Currently selected device: " + mSelectedDevice.Description);
                 SaveSelectedDeviceToFile();
+                Console.WriteLine("Currently selected device: " + mSelectedDevice.Description);
             }
         }
 
@@ -45,17 +45,26 @@ namespace MW2KTCore
         {
             get
             {
+                if(SelectedDevice != null)
                 for (int i = 0; i < AvailableDevices.Count; i++)
                     if (AvailableDevices[i].Name == SelectedDevice.Name)
                         return i;
                 return -1;
             }
         }
+
+        /// <summary>
+        /// Returns the available LivePacketDevices on the local machine
+        /// </summary>
         public static IList<LivePacketDevice> AvailableDevices
         {
             get { return LivePacketDevice.AllLocalMachine; }
         }
 
+        /// <summary>
+        /// Returns the available LivePacketDevices on the local machine in an extended format.
+        /// These can be passed into a control, the discription will be shown via the ToString() method.
+        /// </summary>
         public static List<LivePacketDeviceExtended> AvailableDevicesExtended
         {
             get
@@ -67,6 +76,10 @@ namespace MW2KTCore
             }
         }
 
+
+        /// <summary>
+        /// Loads the last selected LivePacketDevice from a file.
+        /// </summary>
         private static void LoadSelectedDeviceFromFile()
         {
             using (StreamReader sr = new StreamReader(mRootPath + @"/device"))
@@ -80,10 +93,17 @@ namespace MW2KTCore
                 if(mSelectedDevice == null)
                 {
                     MessageBox.Show("Could not locate your default capture device on this computer.", "MW2KT", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    if (AvailableDevices.Count > 0)
+                        SelectedDevice = AvailableDevices[0];
                 }
             }
         }
 
+
+        /// <summary>
+        /// Save the last selected LivePacketDevice to a file.
+        /// </summary>
         private static void SaveSelectedDeviceToFile()
         {
             //MessageBox.Show(mRootPath + @"/device");
@@ -93,6 +113,10 @@ namespace MW2KTCore
             }
         }
 
+
+        /// <summary>
+        /// Starts capturing UPD packets related to Modern Warfare 2
+        /// </summary>
         public static void StartCapturing()
         {
             using (PacketCommunicator communicator = SelectedDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
