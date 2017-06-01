@@ -60,5 +60,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MW2KTCore\MW2KTCore.csproj">
+      <Project>{1D1AF281-69BC-4A02-B2D2-4AACE5F4C090}</Project>
+      <Name>MW2KTCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,7 +11,9 @@ namespace MW2KTCore
 {
     public static class PacketCapture
     {
-        private static PacketHandler mPacketHandler = null;
+        private static string mRootPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+        /*private static PacketHandler mPacketHandler = null;
         public static PacketHandler PacketHandler
         {
             get
@@ -21,44 +23,34 @@ namespace MW2KTCore
                 return mPacketHandler;
             }
             
-        }
+        }*/
 
-        private static string mRootPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-        private static LivePacketDevice mSelectedDevice = null;
-        public static LivePacketDevice SelectedDevice
+        private static LivePacketDeviceExtended mSelectedDevice = null;
+        /// <summary>
+        /// Returns the currently selected LivePacketDevice
+        /// </summary>
+        public static LivePacketDeviceExtended SelectedDevice
         {
             get
             {
                 if (mSelectedDevice == null)         // Check if default deivce was loaded from file
-                    LoadSelectedDeviceFromFile();    // Load default device from file.
+                {
+                    if(!LoadSelectedDeviceFromFile())    // Load default device from file.
+                    {
+                        if (AvailableDevicesExtended.Count > 0)
+                        {
+                            mSelectedDevice = AvailableDevicesExtended[0];
+                        }
+                    }
+                }
                 return mSelectedDevice;
             }
             set
             {
                 mSelectedDevice = value;
                 SaveSelectedDeviceToFile();
-                Console.WriteLine("Currently selected device: " + mSelectedDevice.Description);
+                Console.WriteLine("Saved currently selected device: " + mSelectedDevice.LivePacketDevice.Description);
             }
-        }
-
-        public static int SelectedDeivceIndex
-        {
-            get
-            {
-                if(SelectedDevice != null)
-                for (int i = 0; i < AvailableDevices.Count; i++)
-                    if (AvailableDevices[i].Name == SelectedDevice.Name)
-                        return i;
-                return -1;
-            }
-        }
-
-        /// <summary>
-        /// Returns the available LivePacketDevices on the local machine
-        /// </summary>
-        public static IList<LivePacketDevice> AvailableDevices
-        {
-            get { return LivePacketDevice.AllLocalMachine; }
         }
 
         /// <summary>
@@ -67,64 +59,77 @@ namespace MW2KTCore
         /// </summary>
         public static List<LivePacketDeviceExtended> AvailableDevicesExtended
         {
-            get
-            {
-                var list = new List<LivePacketDeviceExtended>();
-                foreach (var item in LivePacketDevice.AllLocalMachine)
-                    list.Add(new LivePacketDeviceExtended(item));
-                return list;
-            }
+            get { return LivePacketDeviceExtended.AllLocalMachine; }
         }
-
 
         /// <summary>
         /// Loads the last selected LivePacketDevice from a file.
         /// </summary>
-        private static void LoadSelectedDeviceFromFile()
+        private static bool LoadSelectedDeviceFromFile()
         {
-            using (StreamReader sr = new StreamReader(mRootPath + @"/device"))
+            bool succes = false;
+            try
             {
-                string name = sr.ReadLine();
-                foreach (var item in AvailableDevices)
+                using (StreamReader sr = new StreamReader(mRootPath + @"/device"))
                 {
-                    if (item.Name == name)
-                        mSelectedDevice = item;
-                }
-                if(mSelectedDevice == null)
-                {
-                    MessageBox.Show("Could not locate your default capture device on this computer.", "MW2KT", MessageBoxButton.OK, MessageBoxImage.Error);
-
-                    if (AvailableDevices.Count > 0)
-                        SelectedDevice = AvailableDevices[0];
+                    string name = sr.ReadLine();
+                    foreach (var item in AvailableDevicesExtended)
+                    {
+                        if (item.LivePacketDevice.Name == name)
+                        {
+                            mSelectedDevice = item;
+                            succes = true;
+                        }
+                    }
                 }
             }
+            catch(Exception ex)
+            {
+                MessageBox.Show("There was an error trying to load the settings for the capturedevice.", "MKTKT - ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return succes;
         }
-
 
         /// <summary>
         /// Save the last selected LivePacketDevice to a file.
         /// </summary>
         private static void SaveSelectedDeviceToFile()
         {
-            //MessageBox.Show(mRootPath + @"/device");
-            using (StreamWriter sw = new StreamWriter(mRootPath + @"/device", false))
+            try
             {
-                sw.WriteLine(SelectedDevice.Name);
+                using (StreamWriter sw = new StreamWriter(mRootPath + @"/device", false))
+                {
+                    sw.WriteLine(SelectedDevice.LivePacketDevice.Name);
+                }
+            }
+            catch(Exception ex)
+            {
+                //MessageBox.Show("There was a problem saving.");
             }
         }
 
-
         /// <summary>
-        /// Starts capturing UPD packets related to Modern Warfare 2
+        /// Starts capturing UPD packets related to Modern Warfare 2 and spits the caugth packages out to the PacketHandler.
         /// </summary>
-        public static void StartCapturing()
+        public static void StartCapturing(object o)
         {
-            using (PacketCommunicator communicator = SelectedDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
+            StartCapturing((PacketHandler)o);
+        }
+        public static void StartCapturing(PacketHandler packetHandler)
+        {
+            if(SelectedDevice == null)
             {
-                communicator.SetFilter("ip and udp and port 28960");
+                MessageBox.Show("There are no capture devices available on the computer. Make sure WinPcap is installed.", "MW2KT - ERROR", MessageBoxButton.OK, MessageBoxImage.Hand);
+            }
+            else
+            {
+                using (PacketCommunicator communicator = SelectedDevice.LivePacketDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
+                {
+                    communicator.SetFilter("ip and udp and port 28960");
 
-                // Start the capture
-                communicator.ReceivePackets(0, PacketHandler.HandlePacket);
+                    // Start the capture
+                    communicator.ReceivePackets(0, packetHandler.HandlePacket);
+                }
             }
         }
     }

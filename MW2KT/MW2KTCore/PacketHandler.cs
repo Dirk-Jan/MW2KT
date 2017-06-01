@@ -37,7 +37,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                 // Check if packettype is 0partystate
                 Byte[] packetTypeBuffer = new Byte[16];
                 Buffer.BlockCopy(mw2Payload, 0, packetTypeBuffer, 0, packetTypeBuffer.Length);
-                //Debug.WriteLine("Packettype: " + Encoding.UTF8.GetString(temp));
+                Debug.WriteLine("Packettype: " + Encoding.UTF8.GetString(packetTypeBuffer));
                 if (Encoding.UTF8.GetString(packetTypeBuffer).Contains("0partystate"))
                 {
                     Debug.WriteLine("We have received a 0partystate packet");
@@ -56,7 +56,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                     if (vali == "4") // we have all info
                     {
                         //RefreshPlayerList(partyPacket.Players);
-                        if(!IsPlayerListTheSame(partyPacket.Players, mLastReturnedPlayerList))
+                        //if(!IsPlayerListTheSame(partyPacket.Players, mLastReturnedPlayerList))
                             OnNewPlayerListAvailable(partyPacket.Players);
                     }
                     else if (vali == "8") // We have the first part of all info
@@ -74,7 +74,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                                     players.Add(p);
                             //RefreshPlayerList(players);
                             //mTempListPartyStatePlayers = null;
-                            if (!IsPlayerListTheSame(players, mLastReturnedPlayerList))
+                            //if (!IsPlayerListTheSame(players, mLastReturnedPlayerList))
                                 OnNewPlayerListAvailable(players);
                         }
                     }

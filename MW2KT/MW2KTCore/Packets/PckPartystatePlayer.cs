@@ -30,6 +30,22 @@ namespace MW2KTCore.Packets
         public bool IsHost { get; set; }
 
         public int PlayerPayloadLength { get; set; }
+        public string PlayerNameWithoutColorCodes
+        {
+            get
+            {
+                string name = PlayerName;
+                for (int i = 0; i < name.Length; i++)
+                {
+                    if(i > 0 && name[i-1] == '^' && int.TryParse(name[i].ToString(), out int x))
+                    {
+                        name = name.Remove(i - 1, 2);
+                        i = i-1;    // Step back one place, it'll continue with a char that hasn't been checked yet
+                    }
+                }
+                return name;
+            }
+        }
 
         // Constructor
         public PckPartystatePlayer(byte[] buffer, bool followUpPackage, bool shortened, IPAddress hostIp)
@@ -68,7 +84,6 @@ namespace MW2KTCore.Packets
                 IsHost = false;
             else
                 IsHost = true;
-            //IsHost = hostIp.Equals(ExternalIP) ? true : false;  // To indicate if this player is the host
               
         }
 

@@ -23,6 +23,7 @@ namespace MW2KT_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        PacketHandler mPacketHandler = new PacketHandler();
         public MainWindow()
         {
             InitializeComponent();
@@ -59,17 +60,17 @@ namespace MW2KT_WPF
 
         private void Window_ContentRendered(object sender, EventArgs e)
         {
-            lboxDevices.Items.Clear();
+            /*lboxDevices.Items.Clear();
             foreach (var item in PacketCapture.AvailableDevices)
             {
                 lboxDevices.Items.Add(item.Description);
             }
-            //lboxDevices.ItemsSource = PacketCapture.Devices;
+            //lboxDevices.ItemsSource = PacketCapture.Devices;*/
         }
 
         private void lboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string description = e.AddedItems[0].ToString();
+            /*string description = e.AddedItems[0].ToString();
             foreach (var item in PacketCapture.AvailableDevices)
             {
                 Console.WriteLine(description + " : " + item.Description);
@@ -78,14 +79,20 @@ namespace MW2KT_WPF
             }
             //MessageBox.Show(name);
             //System.Windows.Forms.MessageBox.Show(e.AddedItems.Count.ToString());
-            //e.AddedItems[0]
+            //e.AddedItems[0]*/
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PacketCapture.PacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
-            new Thread(new ThreadStart(PacketCapture.StartCapturing)).Start();
+            //PacketCapture.PacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
+            //new Thread(new ThreadStart(PacketCapture.StartCapturing)).Start();
+
             
+            mPacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
+
+            var t = new Thread(new ParameterizedThreadStart(PacketCapture.StartCapturing));
+            t.Start(mPacketHandler);
+
             //PacketCapture.StartCapturing();
             btnStartCapture.Content = "---";
         }
@@ -105,7 +112,7 @@ namespace MW2KT_WPF
 
         private void UpdatePlayerListInGUI(List<MW2KTCore.Packets.PckPartystatePlayer> players)
         {
-            var parties = PacketCapture.PacketHandler.GetParties(players);
+            var parties = mPacketHandler.GetParties(players);
             var partyImages = GetRandomizedPartyImages();
             for (int i = 0; i < players.Count; i++)
             {

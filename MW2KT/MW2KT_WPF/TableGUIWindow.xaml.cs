@@ -23,6 +23,8 @@ namespace MW2KT_WPF
     /// </summary>
     public partial class TableGUIWindow : Window
     {
+        PacketHandler mPacketHandler = new PacketHandler();
+
         public TableGUIWindow()
         {
             InitializeComponent();
@@ -32,19 +34,21 @@ namespace MW2KT_WPF
         {
             cboxDevices.ItemsSource = PacketCapture.AvailableDevicesExtended;
             //lboxDevices.SelectedValue = new LivePacketDeviceExtended(PacketCapture.SelectedDevice);
-            cboxDevices.SelectedIndex = PacketCapture.SelectedDeivceIndex;
+            cboxDevices.SelectedIndex = PacketCapture.SelectedDevice.Index;
             cboxDevices.SelectionChanged += CboxDevices_SelectionChanged;
         }
 
         private void CboxDevices_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PacketCapture.SelectedDevice = ((LivePacketDeviceExtended)e.AddedItems[0]).LivePacketDevice;
+            PacketCapture.SelectedDevice = (LivePacketDeviceExtended)e.AddedItems[0];
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            PacketCapture.PacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
-            new Thread(new ThreadStart(PacketCapture.StartCapturing)).Start();
+            mPacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
+
+            var t = new Thread(new ParameterizedThreadStart(PacketCapture.StartCapturing));
+            t.Start(mPacketHandler);
 
             btnStartCapture.Content = "---";
         }

@@ -16,7 +16,7 @@ namespace MW2KT_WPF.UI.TableGUI
 
         public PlayerGridRow(MW2KTCore.Packets.PckPartystatePlayer p)
         {
-            Name = p.PlayerName;
+            Name = p.PlayerNameWithoutColorCodes;
             Level = p.PlayerLevel.ToString();
             PrestigeURL = GetPrestigeSymbolURI(p.PlayerPrestigeLevel, p.PlayerLevel);
             IPAddress = p.ExternalIP.ToString();
