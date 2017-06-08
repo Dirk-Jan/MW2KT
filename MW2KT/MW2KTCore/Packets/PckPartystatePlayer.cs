@@ -9,6 +9,7 @@ namespace MW2KTCore.Packets
 {
     public class PckPartystatePlayer // 62 + 4/3 + 8/7 so either 74 or 73
     {
+        public byte[] PacketBuffer { get; set; }              // For debugging
         public Byte PlayerID { get; set; }              // 1 byte
         // byte                                         // 1 byte
         // byte                                         // 1 byte
@@ -50,6 +51,7 @@ namespace MW2KTCore.Packets
         // Constructor
         public PckPartystatePlayer(byte[] buffer, bool followUpPackage, bool shortened, IPAddress hostIp)
         {
+            PacketBuffer = buffer;
             PlayerID = buffer[0];
             PlayerName = ReadNullTerminatedString(buffer, 4);
             int playerNameOffset = 4 + PlayerName.Length + 1;

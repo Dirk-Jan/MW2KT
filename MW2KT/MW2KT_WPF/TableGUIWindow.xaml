@@ -16,7 +16,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <!--<UI:MW2Label Text="{Binding Name}"/>-->
-                                <TextBlock Text="{Binding Name}"/>
+                                <TextBlock Text="{Binding Name}" MouseUp="TextBlock_MouseUp_1"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -34,10 +34,19 @@
                 <DataGridTextColumn Header="IP Address" Binding="{Binding IPAddress}" />
                 <DataGridTextColumn Header="Location" />
                 <DataGridTextColumn Header="Tag" />
+                <DataGridTemplateColumn Header="Tag">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Tag}" MouseUp="TextBlock_MouseUp"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Is host" Binding="{Binding IsHost}"/>
             </DataGrid.Columns>
         </DataGrid>
         <ComboBox x:Name="cboxDevices" Margin="10,10,247,0" VerticalAlignment="Top"/>
         <Button x:Name="btnStartCapture" Content="Start capturing!" Margin="550,10,10,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="608,40,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click"/>
 
 
 

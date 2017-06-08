@@ -114,13 +114,13 @@ namespace MW2KTCore.Packets
                     Byte[] temp = new Byte[buffer.Length - mMW2PayloadOffset];
                     Buffer.BlockCopy(buffer, mMW2PayloadOffset, temp, 0, temp.Length);
                     // 1, 5, 9, 13, ect shortend
-                    // 0, 4, 8, 12, ect %4 0 so index==1 || (((index-1)%4)==0) > shortend
-                    bool shortend;
+                    // 0, 4, 8, 12, ect %4 0 so index==1 || (((index-1)%4)==0) > shortened
+                    bool shortened;
                     if (playerIndex == 1 || (((playerIndex - 1) % 4) == 0))
-                        shortend = true;
+                        shortened = true;
                     else
-                        shortend = false;
-                    PckPartystatePlayer p = new PckPartystatePlayer(temp, true, shortend, HostIP_ext);  // HostIP_ext is not set here, maybe the host is always in the first package
+                        shortened = false;
+                    PckPartystatePlayer p = new PckPartystatePlayer(temp, true, shortened, HostIP_ext);  // HostIP_ext is not set here, maybe the host is always in the first package
                     Players.Add(p);
 
                     // increment playerindex and mw2payloadoffset
@@ -156,12 +156,12 @@ namespace MW2KTCore.Packets
                     Buffer.BlockCopy(buffer, mMW2PayloadOffset, temp, 0, temp.Length);
                     // 0, 4, 8, 12, ect shortend
                     // so index==0 || ((index%4)==0) > shortend
-                    bool shortend;
+                    bool shortened;
                     if (playerIndex == 0 || ((playerIndex % 4) == 0))
-                        shortend = true;
+                        shortened = true;
                     else
-                        shortend = false;
-                    PckPartystatePlayer p = new PckPartystatePlayer(temp, false, shortend, HostIP_ext);
+                        shortened = false;
+                    PckPartystatePlayer p = new PckPartystatePlayer(temp, false, shortened, HostIP_ext);
                     Players.Add(p);
 
                     // increment playerindex and mw2payloadoffset

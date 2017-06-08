@@ -3,6 +3,7 @@ using MW2KTCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -55,13 +56,13 @@ namespace MW2KT_WPF
 
         private void PacketHandler_NewPlayerListAvailable(List<MW2KTCore.Packets.PckPartystatePlayer> players)
         {
-            var newPlayers = new List<PlayerGridRow>();
+            var newPlayers = new List<Player>();
             foreach (var p in players)
-                newPlayers.Add(new PlayerGridRow(p));
+                newPlayers.Add(new Player(p));
             InvokeUpdatePlayerListInGUI(newPlayers);
         }
 
-        private void InvokeUpdatePlayerListInGUI(List<PlayerGridRow> players)
+        private void InvokeUpdatePlayerListInGUI(List<Player> players)
         {
             Dispatcher.BeginInvoke((Action)delegate ()
             {
@@ -69,15 +70,73 @@ namespace MW2KT_WPF
             });
         }
 
-        private void UpdatePlayerListInGUI(List<PlayerGridRow> players)
+        private void UpdatePlayerListInGUI(List<Player> players)
         {
             dgGrid.ItemsSource = players;
+            /*int iPlayer = 0;
+            for (int i = 0; i < players.Count; i++)
+            {
+                if(players[i].IsHost)
+                {
+                    iPlayer = i;
+                    break;
+                }
+            }
+            dgGrid.RowBackground = Brushes.Beige;*/
+            
         }
 
         private string[] GetRandomizedPartyImages()
         {
             string[] availableImages = { "party_red.png", "party_yellow.png", "party_orange.png", "party_pink.png", "party_blue.png", "party_bordeaux.png", "party_brown.png", "party_green.png", "party_purple.png" };
             return availableImages;
+        }
+
+        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            if (dgGrid.SelectedIndex >= 0)
+            {
+                var player = (Player)dgGrid.SelectedItem;
+                //MessageBox.Show(player.Name);
+                //MessageBox.Show(player.Tag.ToString());
+                if (player.Tag == PlayerTag.Cheater)
+                {
+                    //MessageBox.Show("Cheater");
+                    player.Tag = PlayerTag.None;
+                    player.SavePlayerToFile();
+                }
+                else
+                {
+                    //MessageBox.Show("None");
+                    player.Tag = PlayerTag.Cheater;
+                    player.SavePlayerToFile();
+                }
+                dgGrid.Items.Refresh();
+            }
+        }
+
+        private void TextBlock_MouseUp_1(object sender, MouseButtonEventArgs e)
+        {
+            if (dgGrid.SelectedIndex >= 0)
+            {
+                var player = (Player)dgGrid.SelectedItem;
+                var dir = @"C:\MW2KT_packets\match5\";
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+                File.WriteAllBytes(dir + dgGrid.SelectedIndex.ToString() + " " + player.Name, player.PlayerBuffer);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Player item in dgGrid.ItemsSource)
+            {
+                if (item.IsHost)
+                {
+                    var row = dgGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                    row.Background = Brushes.Beige;
+                }
+            }
         }
     }
 }

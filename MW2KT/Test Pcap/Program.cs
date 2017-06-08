@@ -13,8 +13,8 @@ namespace Test_Pcap
     {
         static void Main(string[] args)
         {
-            //Player p = new Player(03211275326, PlayerTag.Cheater, new System.Net.IPAddress(new byte[] { 0xC0, 0xA5, 0xDD, 0x88 }), "-");
-            //p.SavePlayerToFile();
+            var player = new Player(0321125326, PlayerTag.Cheater, new System.Net.IPAddress(new byte[] { 0xC0, 0xA5, 0xDD, 0x88 }), "-");
+            player.SavePlayerToFile();
 
             var players = Player.LoadRegisteredPlayersFromFile();
             foreach(var p in players)

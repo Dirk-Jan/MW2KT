@@ -67,7 +67,6 @@
     <Compile Include="UI\ScoreboardGUI\PlayerViewLive.xaml.cs">
       <DependentUpon>PlayerViewLive.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\TableGUI\PlayerGridRow.cs" />
     <Page Include="ChooseGUIWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
