@@ -31,41 +31,45 @@ namespace MW2KTCore
         public static List<Player> LoadRegisteredPlayersFromFile()
         {
             var players = new List<Player>();
-            string[] files = Directory.GetFiles(mRootPath + @"/players/");
-            foreach (var file in files)
+            if (Directory.Exists(mPlayersPath))
             {
-                if(Path.GetExtension(file) == ".mw2kt_player")
+                string[] files = Directory.GetFiles(mRootPath + @"/players/");
+                foreach (var file in files)
                 {
-                    byte[] buffer = File.ReadAllBytes(file);
-                    if(buffer.Length >= mPlayerAsFileByteCount)                 // Check if we have enough bytes in the file
+                    if (Path.GetExtension(file) == ".mw2kt_player")
                     {
-                        bool fileIsValid = true;
-                        for (int i = 0; i < mValidationBytes.Length; i++)       // Check if the validation bytes are correct
-                            if (buffer[i] != mValidationBytes[i])
-                                fileIsValid = false;
-                        if(fileIsValid)
+                        byte[] buffer = File.ReadAllBytes(file);
+                        if (buffer.Length >= mPlayerAsFileByteCount)                 // Check if we have enough bytes in the file
                         {
-                            int bytesRead = mValidationBytes.Length;
+                            bool fileIsValid = true;
+                            for (int i = 0; i < mValidationBytes.Length; i++)       // Check if the validation bytes are correct
+                                if (buffer[i] != mValidationBytes[i])
+                                    fileIsValid = false;
+                            if (fileIsValid)
+                            {
+                                int bytesRead = mValidationBytes.Length;
 
-                            var steamId = BitConverter.ToUInt64(buffer, bytesRead);
-                            bytesRead += 8;
+                                var steamId = BitConverter.ToUInt64(buffer, bytesRead);
+                                bytesRead += 8;
 
-                            var tag = (PlayerTag)buffer[bytesRead];
-                            bytesRead += 1;
+                                var tag = (PlayerTag)buffer[bytesRead];
+                                bytesRead += 1;
 
-                            var ip_array = new byte[4];
-                            Buffer.BlockCopy(buffer, bytesRead, ip_array, 0, 4);
-                            var ip = new IPAddress(ip_array);
-                            bytesRead += 4;
+                                var ip_array = new byte[4];
+                                Buffer.BlockCopy(buffer, bytesRead, ip_array, 0, 4);
+                                var ip = new IPAddress(ip_array);
+                                bytesRead += 4;
 
-                            var name_array = new byte[buffer.Length - bytesRead];
-                            Buffer.BlockCopy(buffer, bytesRead, name_array, 0, name_array.Length);
-                            var name = Encoding.UTF8.GetString(name_array);
+                                var name_array = new byte[buffer.Length - bytesRead];
+                                Buffer.BlockCopy(buffer, bytesRead, name_array, 0, name_array.Length);
+                                var name = Encoding.UTF8.GetString(name_array);
 
-                            players.Add(new Player(steamId, tag, ip, name));
+                                players.Add(new Player(steamId, tag, ip, name));
+                            }
                         }
                     }
                 }
+
             }
             return players;
         }
@@ -81,7 +85,7 @@ namespace MW2KTCore
                 string file = mPlayersPath + SteamId.ToString() + ".mw2kt_player";
                 File.WriteAllBytes(file, ToByteArray());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 success = false;
             }
