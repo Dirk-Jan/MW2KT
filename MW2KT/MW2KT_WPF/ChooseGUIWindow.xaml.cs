@@ -33,10 +33,14 @@ namespace MW2KT_WPF
         {
             new TableGUIWindow().Show();
         }
+        private void btnDebugTableGUI_Click(object sender, RoutedEventArgs e)
+        {
+            new DebugTableGUIWindow().Show();
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            mw2lbl.Text = "^6G^3host^2~";
+            mw2lbl.Text = "^6G^4host^2~";
         }
     }
 }

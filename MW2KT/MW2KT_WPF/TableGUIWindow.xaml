@@ -33,7 +33,6 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="IP Address" Binding="{Binding IPAddress}" />
                 <DataGridTextColumn Header="Location" />
-                <DataGridTextColumn Header="Tag" />
                 <DataGridTemplateColumn Header="Tag">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

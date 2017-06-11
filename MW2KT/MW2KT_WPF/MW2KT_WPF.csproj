@@ -35,6 +35,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PcapDotNet.Core, Version=1.0.1.29433, Culture=neutral, PublicKeyToken=4b6f3e583145a652" />
+    <Reference Include="PcapDotNet.Packets, Version=1.0.1.29423, Culture=neutral, PublicKeyToken=4b6f3e583145a652, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MW2KTCore\lib\PcapDotNet.Packets.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -60,6 +64,7 @@
     <Compile Include="ChooseGUIWindow.xaml.cs">
       <DependentUpon>ChooseGUIWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DebugTableGUIWindow.cs" />
     <Compile Include="TableGUIWindow.xaml.cs">
       <DependentUpon>TableGUIWindow.xaml</DependentUpon>
     </Compile>

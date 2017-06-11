@@ -3,6 +3,7 @@ using PcapDotNet.Packets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,22 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
 {
     public class PacketHandler
     {
+        // For debugging
+        private bool savePacketsToDrive = true;
+        private int count = 0;
+        private void SavePacketToDrive(string type, Packet p)
+        {
+            if (savePacketsToDrive)
+            {
+                var dir = @"H:\MW2KT_packets\match4\";
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+                File.WriteAllBytes(dir + count + " " + type, p.Buffer);
+                count++;
+            }
+        }
+
+
         public delegate void NewPlayerListAvailableEventHandler(List<PckPartystatePlayer> players);
         public event NewPlayerListAvailableEventHandler NewPlayerListAvailable;
         
@@ -40,6 +57,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                 Debug.WriteLine("Packettype: " + Encoding.UTF8.GetString(packetTypeBuffer));
                 if (Encoding.UTF8.GetString(packetTypeBuffer).Contains("0partystate"))
                 {
+                    SavePacketToDrive("0partystate", packet);
                     Debug.WriteLine("We have received a 0partystate packet");
                     // We have a 0partystate packet
                     PckPartystate partyPacket = new PckPartystate(mw2Payload);
@@ -78,6 +96,10 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                                 OnNewPlayerListAvailable(players);
                         }
                     }
+                }
+                else if(Encoding.UTF8.GetString(packetTypeBuffer).Contains("partystate"))
+                {
+                    SavePacketToDrive("Xpartystate", packet);
                 }
             }
         }

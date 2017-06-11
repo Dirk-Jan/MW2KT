@@ -53,8 +53,10 @@ namespace MW2KTCore.Packets
         {
             PacketBuffer = buffer;
             PlayerID = buffer[0];
-            PlayerName = ReadNullTerminatedString(buffer, 4);
-            int playerNameOffset = 4 + PlayerName.Length + 1;
+            string playerName;
+            int playerNameLength = ReadNullTerminatedString(buffer, 4, out playerName);
+            this.PlayerName = playerName;
+            int playerNameOffset = 4 + playerNameLength + 1;
             SteamID = BitConverter.ToUInt64(buffer, playerNameOffset + 4);
             Byte[] temp = new Byte[4];
             Buffer.BlockCopy(buffer, playerNameOffset + 12, temp, 0, 4);
@@ -89,17 +91,20 @@ namespace MW2KTCore.Packets
               
         }
 
-        private string ReadNullTerminatedString(byte[] buffer, int offset)
+        private int ReadNullTerminatedString(byte[] buffer, int offset, out string name)
         {
             List<Byte> bytes = new List<Byte>();
             Byte lastReadByte = buffer[offset];
+            int bytesRead = 0;
             while (offset < buffer.Length && lastReadByte != 0x00)
             {
                 bytes.Add(lastReadByte);
                 offset++;
+                bytesRead++;
                 lastReadByte = buffer[offset];
             }
-            return System.Text.Encoding.UTF8.GetString(bytes.ToArray());
+            name = System.Text.Encoding.UTF8.GetString(bytes.ToArray());
+            return bytesRead;
         }
     }
 }

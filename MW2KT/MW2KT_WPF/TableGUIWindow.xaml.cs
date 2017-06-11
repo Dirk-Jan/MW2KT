@@ -1,8 +1,8 @@
-﻿using MW2KT_WPF.UI.TableGUI;
-using MW2KTCore;
+﻿using MW2KTCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,14 +24,29 @@ namespace MW2KT_WPF
     /// </summary>
     public partial class TableGUIWindow : Window
     {
-        PacketHandler mPacketHandler = new PacketHandler();
+        protected PacketHandler mPacketHandler = new PacketHandler();
 
         public TableGUIWindow()
         {
             InitializeComponent();
+
+            CollectionView myCollectionView = (CollectionView)CollectionViewSource.GetDefaultView(dgGrid.Items);
+            ((INotifyCollectionChanged)myCollectionView).CollectionChanged += new NotifyCollectionChangedEventHandler(DataGrid_CollectionChanged);
         }
 
-        private void Window_ContentRendered(object sender, EventArgs e)
+        private void DataGrid_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            /*foreach (Player item in dgGrid.ItemsSource)
+            {
+                if (item.IsHost)
+                {
+                    var row = dgGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                    row.Background = Brushes.Beige;
+                }
+            }*/
+        }
+
+        protected virtual void Window_ContentRendered(object sender, EventArgs e)
         {
             cboxDevices.ItemsSource = PacketCapture.AvailableDevicesExtended;
             //lboxDevices.SelectedValue = new LivePacketDeviceExtended(PacketCapture.SelectedDevice);
@@ -44,7 +59,7 @@ namespace MW2KT_WPF
             PacketCapture.SelectedDevice = (LivePacketDeviceExtended)e.AddedItems[0];
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        protected virtual void Button_Click_2(object sender, RoutedEventArgs e)
         {
             mPacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
 
@@ -54,7 +69,7 @@ namespace MW2KT_WPF
             btnStartCapture.Content = "---";
         }
 
-        private void PacketHandler_NewPlayerListAvailable(List<MW2KTCore.Packets.PckPartystatePlayer> players)
+        protected void PacketHandler_NewPlayerListAvailable(List<MW2KTCore.Packets.PckPartystatePlayer> players)
         {
             var newPlayers = new List<Player>();
             foreach (var p in players)
@@ -119,11 +134,11 @@ namespace MW2KT_WPF
         {
             if (dgGrid.SelectedIndex >= 0)
             {
-                var player = (Player)dgGrid.SelectedItem;
-                var dir = @"C:\MW2KT_packets\match5\";
+                /*var player = (Player)dgGrid.SelectedItem;
+                var dir = @"H:\MW2KT_packets\match1\";
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
-                File.WriteAllBytes(dir + dgGrid.SelectedIndex.ToString() + " " + player.Name, player.PlayerBuffer);
+                File.WriteAllBytes(dir + dgGrid.SelectedIndex.ToString() + " " + player.Name, player.PlayerBuffer);*/
             }
         }
 
