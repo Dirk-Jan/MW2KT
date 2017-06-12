@@ -132,10 +132,10 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
 
 
         #region Parties
-        // Kijk naar party id
-        // Staat hij nog niet in de list?
+        // Kijk naar party id.
+        // staat hij nog niet in de list?
         // Zo nee, hebben meerdere spelers hetzelfde party id?
-        // Zo ja, voeg party id toe aan list
+        // Zo ja, voeg party id toe aan list.
         public List<UInt64> GetParties(List<PckPartystatePlayer> list)
         {
             var parties = new List<UInt64>();
