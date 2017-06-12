@@ -16,7 +16,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
                                 <!--<UI:MW2Label Text="{Binding Name}"/>-->
-                                <TextBlock Text="{Binding Name}" MouseUp="TextBlock_MouseUp_1"/>
+                                <TextBlock Text="{Binding Name}" MouseUp="PlayerName_MouseUp"  MouseEnter="PlayerName_MouseEnter" MouseLeave="PlayerName_MouseLeave"/>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -36,7 +36,7 @@
                 <DataGridTemplateColumn Header="Tag">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Tag}" MouseUp="TextBlock_MouseUp"/>
+                            <TextBlock Text="{Binding Tag}" MouseUp="Tag_MouseUp"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

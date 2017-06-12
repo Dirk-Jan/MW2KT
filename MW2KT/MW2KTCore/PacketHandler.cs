@@ -13,13 +13,14 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
     public class PacketHandler
     {
         // For debugging
-        private bool savePacketsToDrive = true;
+        private bool savePacketsToDrive = false;
         private int count = 0;
         private void SavePacketToDrive(string type, Packet p)
         {
             if (savePacketsToDrive)
             {
-                var dir = @"H:\MW2KT_packets\match4\";
+                //var dir = @"H:\MW2KT_packets\match4\";
+                var dir = @"C:\Users\Dirk-Jan de Beijer\Documents\12ois\MW2KT_packets\match7\";
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
                 File.WriteAllBytes(dir + count + " " + type, p.Buffer);
@@ -54,7 +55,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                 // Check if packettype is 0partystate
                 Byte[] packetTypeBuffer = new Byte[16];
                 Buffer.BlockCopy(mw2Payload, 0, packetTypeBuffer, 0, packetTypeBuffer.Length);
-                Debug.WriteLine("Packettype: " + Encoding.UTF8.GetString(packetTypeBuffer));
+                Debug.WriteLine("Packettype: " + Encoding.UTF8.GetString(packetTypeBuffer, 0, 16));
                 if (Encoding.UTF8.GetString(packetTypeBuffer).Contains("0partystate"))
                 {
                     SavePacketToDrive("0partystate", packet);
@@ -64,7 +65,6 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                     // Check if packet was successfully read
                     if (!partyPacket.Success)
                         return;
-                    Debug.WriteLine("We've got a successfully read partystate packet with packettype: " + partyPacket.PacketType.ToString("X2"));
                     // Check if multipart packet or not
                     /*using (StreamWriter sw = new StreamWriter(@"H:/mw2_received_packettypes.txt", true))
                     {
@@ -100,6 +100,10 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                 else if(Encoding.UTF8.GetString(packetTypeBuffer).Contains("partystate"))
                 {
                     SavePacketToDrive("Xpartystate", packet);
+                }
+                else if (Encoding.UTF8.GetString(packetTypeBuffer).Contains("0memberjoin"))
+                {
+                    SavePacketToDrive("0memberjoin", packet);
                 }
             }
         }

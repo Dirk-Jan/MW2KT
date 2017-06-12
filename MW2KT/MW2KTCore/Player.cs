@@ -46,6 +46,11 @@ namespace MW2KTCore
             LoadPlayerTagFromFile();
         }
 
+        public void OpenSteamProfileInBrowser()
+        {
+            System.Diagnostics.Process.Start("http://steamcommunity.com/profiles/" + SteamId);
+        }
+
         #region GUI Related
         private string GetPrestigeSymbolURI(int prestige, int level)
         {

@@ -19,7 +19,8 @@ namespace MW2KT_WPF
             cboxDevices.IsEnabled = false;
             mPacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
 
-            packets = Directory.GetFiles(@"H:\MW2KT_packets\match2\");
+            //packets = Directory.GetFiles(@"H:\MW2KT_packets\match2\");
+            packets = Directory.GetFiles(@"C:\Users\Dirk-Jan de Beijer\Documents\12ois\MW2KT_packets\match6\");
         }
 
         protected override void Button_Click_2(object sender, RoutedEventArgs e)

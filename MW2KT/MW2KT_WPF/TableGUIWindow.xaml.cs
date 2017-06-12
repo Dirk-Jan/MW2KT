@@ -107,22 +107,18 @@ namespace MW2KT_WPF
             return availableImages;
         }
 
-        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
+        private void Tag_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (dgGrid.SelectedIndex >= 0)
             {
                 var player = (Player)dgGrid.SelectedItem;
-                //MessageBox.Show(player.Name);
-                //MessageBox.Show(player.Tag.ToString());
                 if (player.Tag == PlayerTag.Cheater)
                 {
-                    //MessageBox.Show("Cheater");
                     player.Tag = PlayerTag.None;
                     player.SavePlayerToFile();
                 }
                 else
                 {
-                    //MessageBox.Show("None");
                     player.Tag = PlayerTag.Cheater;
                     player.SavePlayerToFile();
                 }
@@ -130,15 +126,12 @@ namespace MW2KT_WPF
             }
         }
 
-        private void TextBlock_MouseUp_1(object sender, MouseButtonEventArgs e)
+        private void PlayerName_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (dgGrid.SelectedIndex >= 0)
             {
-                /*var player = (Player)dgGrid.SelectedItem;
-                var dir = @"H:\MW2KT_packets\match1\";
-                if (!Directory.Exists(dir))
-                    Directory.CreateDirectory(dir);
-                File.WriteAllBytes(dir + dgGrid.SelectedIndex.ToString() + " " + player.Name, player.PlayerBuffer);*/
+                var player = (Player)dgGrid.SelectedItem;
+                player.OpenSteamProfileInBrowser();
             }
         }
 
@@ -152,6 +145,20 @@ namespace MW2KT_WPF
                     row.Background = Brushes.Beige;
                 }
             }
+        }
+
+        private void PlayerName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var t = sender as TextBlock;
+            t.TextDecorations.Add(TextDecorations.Underline);
+            Cursor = Cursors.Hand;
+        }
+
+        private void PlayerName_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var t = sender as TextBlock;
+            t.TextDecorations.RemoveAt(t.TextDecorations.Count - 1);    // Assuming the last added decoration is the underline
+            Cursor = null;
         }
     }
 }

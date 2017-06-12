@@ -82,7 +82,7 @@ namespace MW2KTCore.Packets
             PlayerPrestigeLevel = buffer[playerLevelOffset + 1];
 
             // Set amount of bytes read / used
-            PlayerPayloadLength = (shortened ? 73 : 74) + PlayerName.Length + 1;
+            PlayerPayloadLength = (shortened ? 73 : 74) + playerNameLength + 1;
 
             if (hostIp == null || !hostIp.Equals(ExternalIP))
                 IsHost = false;
