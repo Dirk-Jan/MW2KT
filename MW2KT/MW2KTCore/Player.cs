@@ -15,20 +15,23 @@ namespace MW2KTCore
         private static readonly byte[] mValidationBytes = { 0x64, 0x6A };
         private static readonly int mPlayerAsFileByteCount = 15;
 
-        public UInt64 SteamId { get; set; }
+        public UInt64 SteamID { get; set; }
         public PlayerTag Tag { get; set; }
         public IPAddress IPAddress { get; set; }
         public string Name { get; set; }
         public string Level { get; set; }
         public string PrestigeURL { get; set; }
         public bool IsHost { get; set; }
+        public UInt64 PartyID { get; set; }
+        public int PartyImageIndex { get; set; }
+        public string PartyImageName { get; set; }
 
         public byte[] PlayerBuffer { get; set; }        // For debugging
 
 
         public Player(UInt64 steamId, PlayerTag tag, IPAddress ip, string name)
         {
-            SteamId = steamId;
+            SteamID = steamId;
             Tag = tag;
             IPAddress = ip;
             Name = name;
@@ -38,17 +41,64 @@ namespace MW2KTCore
         {
             PlayerBuffer = p.PacketBuffer;
             IsHost = p.IsHost;
-            SteamId = p.SteamID;
+            SteamID = p.SteamID;
             Name = p.PlayerNameWithoutColorCodes;
             Level = p.PlayerLevel.ToString();
             PrestigeURL = GetPrestigeSymbolURI(p.PlayerPrestigeLevel, p.PlayerLevel);
             IPAddress = p.ExternalIP;
+            PartyID = p.PartyID;
             LoadPlayerTagFromFile();
         }
 
+
+
+        #region Parties
+        public static List<Player> GetParties(List<Player> players)
+        {
+            var partyIDs = GetPartiesIDs(players);
+            foreach (var player in players)
+            {
+                player.PartyImageIndex = partyIDs.IndexOf(player.PartyID);
+            }
+            return players;
+        }
+
+        // Kijk naar party id.
+        // staat hij nog niet in de list?
+        // Zo nee, hebben meerdere spelers hetzelfde party id?
+        // Zo ja, voeg party id toe aan list.
+        private static List<UInt64> GetPartiesIDs(List<Player> list)
+        {
+            var parties = new List<UInt64>();
+
+            foreach (var p in list)
+            {
+                if (!IsUInt64InList(p.PartyID, parties) && MorePlayersInParty(p.SteamID, p.PartyID, list))
+                    parties.Add(p.PartyID);
+            }
+            return parties;
+        }
+
+        private static bool IsUInt64InList(UInt64 value, List<UInt64> list)
+        {
+            foreach (var i in list)
+                if (i == value)
+                    return true;
+            return false;
+        }
+
+        private static bool MorePlayersInParty(UInt64 ignoreSteamId, UInt64 partyId, List<Player> list)
+        {
+            foreach (var p in list)
+                if (p.SteamID != ignoreSteamId && p.PartyID == partyId)
+                    return true;
+            return false;
+        }
+        #endregion
+
         public void OpenSteamProfileInBrowser()
         {
-            System.Diagnostics.Process.Start("http://steamcommunity.com/profiles/" + SteamId);
+            System.Diagnostics.Process.Start("http://steamcommunity.com/profiles/" + SteamID);
         }
 
         #region GUI Related
@@ -220,7 +270,7 @@ namespace MW2KTCore
         #region Tag Related
         private void LoadPlayerTagFromFile()
         {
-            var fileName = mRootPath + @"/players/" + SteamId.ToString() + ".mw2kt_player";
+            var fileName = mRootPath + @"/players/" + SteamID.ToString() + ".mw2kt_player";
             if (File.Exists(fileName))
             {
                 var player = LoadPlayerFromFile(fileName);
@@ -291,10 +341,10 @@ namespace MW2KTCore
                 if (!Directory.Exists(mPlayersPath))
                     Directory.CreateDirectory(mPlayersPath);
 
-                string file = mPlayersPath + SteamId.ToString() + ".mw2kt_player";
+                string file = mPlayersPath + SteamID.ToString() + ".mw2kt_player";
                 File.WriteAllBytes(file, ToByteArray());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 success = false;
             }
@@ -309,7 +359,7 @@ namespace MW2KTCore
             Buffer.BlockCopy(mValidationBytes, 0, array, bytesCopied, mValidationBytes.Length);
             bytesCopied += mValidationBytes.Length;
 
-            var steamId = BitConverter.GetBytes(SteamId);
+            var steamId = BitConverter.GetBytes(SteamID);
             Buffer.BlockCopy(steamId, 0, array, bytesCopied, steamId.Length);
             bytesCopied += steamId.Length;
 

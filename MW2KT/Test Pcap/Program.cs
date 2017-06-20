@@ -20,7 +20,7 @@ namespace Test_Pcap
             foreach(var p in players)
             {
                 Console.WriteLine("====================================================");
-                Console.WriteLine("SteamID: " + p.SteamId.ToString());
+                Console.WriteLine("SteamID: " + p.SteamID.ToString());
                 Console.WriteLine("PlayerTag: " + p.Tag.ToString());
                 Console.WriteLine("IP Address: " + p.IPAddress.ToString());
                 Console.WriteLine("Name: " + p.Name);

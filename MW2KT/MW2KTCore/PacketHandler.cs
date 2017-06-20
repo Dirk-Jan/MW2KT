@@ -29,17 +29,31 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
         }
 
 
-        public delegate void NewPlayerListAvailableEventHandler(List<PckPartystatePlayer> players);
+        //public delegate void NewPlayerListAvailableEventHandler(List<PckPartystatePlayer> players);
+        //public event NewPlayerListAvailableEventHandler NewPlayerListAvailable;
+
+        //protected virtual void OnNewPlayerListAvailable(List<PckPartystatePlayer> players)
+        //{
+        //    mLastReturnedPlayerList = players;
+        //    if (NewPlayerListAvailable != null)
+        //        NewPlayerListAvailable(players);
+        //}
+
+        public delegate void NewPlayerListAvailableEventHandler(List<Player> players);
         public event NewPlayerListAvailableEventHandler NewPlayerListAvailable;
-        
+
         protected virtual void OnNewPlayerListAvailable(List<PckPartystatePlayer> players)
         {
-            mLastReturnedPlayerList = players;
-            if (NewPlayerListAvailable != null)
-                NewPlayerListAvailable(players);
+            var newPlayers = new List<Player>();
+            foreach (var p in players)
+                newPlayers.Add(new Player(p));
+
+            mLastReturnedPlayerList = newPlayers;
+
+            NewPlayerListAvailable?.Invoke(newPlayers);
         }
 
-        private List<PckPartystatePlayer> mLastReturnedPlayerList = new List<PckPartystatePlayer>();
+        private List<Player> mLastReturnedPlayerList = new List<Player>();
         private List<PckPartystatePlayer> mTempPlayerList = null;
 
         public void HandlePacket(Packet packet)

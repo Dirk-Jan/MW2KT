@@ -88,7 +88,7 @@ namespace MW2KT_WPF
             //new Thread(new ThreadStart(PacketCapture.StartCapturing)).Start();
 
             
-            mPacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
+            //mPacketHandler.NewPlayerListAvailable += PacketHandler_NewPlayerListAvailable;
 
             var t = new Thread(new ParameterizedThreadStart(PacketCapture.StartCapturing));
             t.Start(mPacketHandler);

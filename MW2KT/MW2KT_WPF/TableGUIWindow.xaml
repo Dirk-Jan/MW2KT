@@ -10,7 +10,14 @@
     <Grid>
         <DataGrid x:Name="dgGrid" Margin="10,37,10,10" AutoGenerateColumns="False" AlternatingRowBackground="LightGray" AlternationCount="2">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Party" />
+                <!--<DataGridTextColumn Header="Party" />-->
+                <DataGridTemplateColumn Header="Party">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding PartyImageName}" Height="32" Width="32"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Player Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

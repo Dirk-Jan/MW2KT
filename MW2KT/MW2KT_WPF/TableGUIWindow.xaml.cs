@@ -69,12 +69,21 @@ namespace MW2KT_WPF
             btnStartCapture.Content = "---";
         }
 
-        protected void PacketHandler_NewPlayerListAvailable(List<MW2KTCore.Packets.PckPartystatePlayer> players)
+        protected void PacketHandler_NewPlayerListAvailable(List<MW2KTCore.Player> players)
         {
-            var newPlayers = new List<Player>();
-            foreach (var p in players)
-                newPlayers.Add(new Player(p));
-            InvokeUpdatePlayerListInGUI(newPlayers);
+            //var newPlayers = new List<Player>();
+            //foreach (var p in players)
+            //    newPlayers.Add(new Player(p));
+            //InvokeUpdatePlayerListInGUI(newPlayers);
+            Player.GetParties(players);
+            var images = GetRandomizedPartyImages();
+            foreach (var player in players)
+            {
+                if (player.PartyImageIndex < 0)
+                    player.PartyImageName = null;
+                else player.PartyImageName = "pack://application:,,,/Resources/" + images[player.PartyImageIndex];
+            }
+            InvokeUpdatePlayerListInGUI(players);
         }
 
         private void InvokeUpdatePlayerListInGUI(List<Player> players)
