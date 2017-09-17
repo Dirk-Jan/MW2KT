@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KT", "MW2KT\MW2KT.csproj", "{EB4333BE-7D77-49D0-BDCD-6519D221228F}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KTCore", "MW2KTCore\MW2KTCore.csproj", "{1D1AF281-69BC-4A02-B2D2-4AACE5F4C090}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Pcap", "Test Pcap\Test Pcap.csproj", "{4E90B53E-B024-4893-85E4-E941766DCA4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KT ASP.NET", "MW2KT ASP.NET\MW2KT ASP.NET.csproj", "{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{4E90B53E-B024-4893-85E4-E941766DCA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E90B53E-B024-4893-85E4-E941766DCA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E90B53E-B024-4893-85E4-E941766DCA4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D54E1E02-E817-439E-B1F5-70F86F46F407}
 	EndGlobalSection
 EndGlobal

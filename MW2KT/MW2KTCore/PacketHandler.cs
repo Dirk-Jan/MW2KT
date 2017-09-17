@@ -13,14 +13,15 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
     public class PacketHandler
     {
         // For debugging
-        private bool savePacketsToDrive = false;
+        private bool savePacketsToDrive = true;
         private int count = 0;
         private void SavePacketToDrive(string type, Packet p)
         {
             if (savePacketsToDrive)
             {
                 //var dir = @"H:\MW2KT_packets\match4\";
-                var dir = @"C:\Users\Dirk-Jan de Beijer\Documents\12ois\MW2KT_packets\match7\";
+                //var dir = @"C:\Users\Dirk-Jan de Beijer\Documents\12ois\MW2KT_packets\match7\";
+                var dir = @"C:\match7\";
                 if (!Directory.Exists(dir))
                     Directory.CreateDirectory(dir);
                 File.WriteAllBytes(dir + count + " " + type, p.Buffer);
@@ -72,7 +73,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                 Debug.WriteLine("Packettype: " + Encoding.UTF8.GetString(packetTypeBuffer, 0, 16));
                 if (Encoding.UTF8.GetString(packetTypeBuffer).Contains("0partystate"))
                 {
-                    SavePacketToDrive("0partystate", packet);
+                    
                     Debug.WriteLine("We have received a 0partystate packet");
                     // We have a 0partystate packet
                     PckPartystate partyPacket = new PckPartystate(mw2Payload);
@@ -87,6 +88,7 @@ namespace MW2KTCore     // Only reason this class is not static is because of th
                     string vali = partyPacket.PacketType.ToString("X2").Substring(1, 1);
                     if (vali == "4") // we have all info
                     {
+                        SavePacketToDrive("0partystatewhoo", packet);
                         //RefreshPlayerList(partyPacket.Players);
                         //if(!IsPlayerListTheSame(partyPacket.Players, mLastReturnedPlayerList))
                             OnNewPlayerListAvailable(partyPacket.Players);
