@@ -11,7 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KTCore", "MW2KTCore\MW2K
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Pcap", "Test Pcap\Test Pcap.csproj", "{4E90B53E-B024-4893-85E4-E941766DCA4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KT ASP.NET", "MW2KT ASP.NET\MW2KT ASP.NET.csproj", "{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW2KT ASP.NET", "MW2KT ASP.NET\MW2KT ASP.NET.csproj", "{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1_netstandard", "ClassLibrary1_netstandard\ClassLibrary1_netstandard.csproj", "{B72C0843-651A-492C-8AB8-73990CBD36D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW2KT ASP.NET NET_framework", "MW2KT ASP.NET NET_framework\MW2KT ASP.NET NET_framework.csproj", "{5D536FAC-0086-467B-A6BE-16221B8F460E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AAC8CB5-8335-41AB-A58C-B2C60960C09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B72C0843-651A-492C-8AB8-73990CBD36D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B72C0843-651A-492C-8AB8-73990CBD36D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B72C0843-651A-492C-8AB8-73990CBD36D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B72C0843-651A-492C-8AB8-73990CBD36D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D536FAC-0086-467B-A6BE-16221B8F460E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D536FAC-0086-467B-A6BE-16221B8F460E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D536FAC-0086-467B-A6BE-16221B8F460E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D536FAC-0086-467B-A6BE-16221B8F460E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

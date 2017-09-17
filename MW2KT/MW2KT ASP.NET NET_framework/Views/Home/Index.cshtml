@@ -1,0 +1,55 @@
+﻿@using MW2KTCore
+@model List<Player>
+
+
+
+<h2>Players</h2>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+
+<div class="row">
+    <table>
+        <tr>
+            <th>Party</th>
+            <th>Player Name</th>
+            <th>Ip Address</th>
+            <th>Tag</th>
+            <th>Action</th>
+        </tr>
+        @if (Model?.Count > 0)
+        {
+            foreach (var player in Model)
+            {
+                <tr>
+                    <td>@player.PartyImageIndex</td>
+                    <td>@player.Name</td>
+                    <td>@player.IPAddress.ToString()</td>
+                    <td>@player.Tag</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="100%">No players found.</td>
+            </tr>
+        }
+    </table>
+</div>
